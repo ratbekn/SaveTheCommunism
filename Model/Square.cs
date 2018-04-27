@@ -2,6 +2,11 @@
 {
     public class Square
     {
-        
+        private Player player;
+
+        public Square()
+        {
+            
+        }
     }
 }

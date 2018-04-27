@@ -1,6 +1,6 @@
 ﻿namespace SaveTheCommunism.Model
 {
-    public class Enemy
+    public class Enemy : Character
     {
         
     }
