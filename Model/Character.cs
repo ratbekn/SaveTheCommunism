@@ -1,4 +1,5 @@
-﻿using SaveTheCommunism.Utilities;
+﻿using System.Runtime.CompilerServices;
+using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
 {
@@ -11,6 +12,16 @@ namespace SaveTheCommunism.Model
         public Vector Direction { get; set; }
         public Vector Speed { get; set; }
         public Vector Velocity { get; set; }
+
+        public Character(int health, int damage, Vector position, Vector speed, Vector velocity)
+        {
+            IsAlive = true;
+            Health = health;
+            Damage = damage;
+            Position = position;
+            Speed = speed;
+            Velocity = velocity;
+        }
 
         public virtual void Hit(Character another)
         {
@@ -27,6 +38,9 @@ namespace SaveTheCommunism.Model
             Speed = Speed.Rotate(mousePosition.Angle);
             Position += Speed;
             Speed += Velocity;
+
+            if (Health <= 0)
+                IsAlive = false;
         }
     }
 }
