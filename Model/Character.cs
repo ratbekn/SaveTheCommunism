@@ -59,7 +59,8 @@ namespace SaveTheCommunism.Model
             Left,
             Right,
             Up,
-            Down
+            Down,
+            None
         }
 
         // добавить ограничения, что x < square.Width, y < square.Height
@@ -68,7 +69,8 @@ namespace SaveTheCommunism.Model
             {Directions.Left, position => position.X > 0 ? new Vector(-1, 0) : Vector.Zero},
             {Directions.Right, position => position.X >= 0 ? new Vector(1, 0) : Vector.Zero},
             {Directions.Up, position => position.Y > 0 ? new Vector(0, -1) : Vector.Zero},
-            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 1) : Vector.Zero}
+            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 1) : Vector.Zero},
+            {Directions.None, position => Vector.Zero}
         };
 
         public void Move(Directions dir)
