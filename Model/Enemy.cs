@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
@@ -6,15 +6,10 @@ namespace SaveTheCommunism.Model
     public class Enemy : Character
     {
         // надо где-нибудь генерировать разные значения для врагов
-        public Enemy(int health, int damage, Vector position, Vector speed, Vector velocity) 
+        public Enemy(int health, int damage, Vector position, Vector speed, Vector velocity)
             : base(health, damage, position, speed, velocity)
         {
-            IsAlive = true;
-            Health = health;
-            Damage = damage;
-            Position = position;
-            Speed = speed;
-            Velocity = velocity;
+
         }
 
         //public Enemy()

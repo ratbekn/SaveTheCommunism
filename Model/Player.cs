@@ -5,16 +5,10 @@ namespace SaveTheCommunism.Model
 {
     public class Player : Character
     {
-        public Player(int health, int damage, Vector position, Vector speed, Vector velocity) 
+        public Player(int health, int damage, Vector position, Vector speed, Vector velocity)
             : base(health, damage, position, speed, velocity)
         {
-            //тут придумаем значения по умолчанию, пусть пока будут рандомные
-            IsAlive = true;
-            Health = 10;
-            Damage = 2;
-            Position = new Vector(10, 10);
-            Speed = new Vector(1, 2);
-            Velocity = new Vector(1, 1);
+
         }
 
         //переименовать, слишком общее название
