@@ -6,6 +6,7 @@ namespace SaveTheCommunism.Model
     {
         public int Health { get; set; }
         public int Damage { get; set; }
+        public bool IsAlive { get; set; }
         public Vector Position { get; set; }
         public Vector Direction { get; set; }
         public Vector Speed { get; set; }
@@ -21,9 +22,11 @@ namespace SaveTheCommunism.Model
             Health -= damage;
         }
 
-        public void Update()
+        public void Update(Vector mousePosition)
         {
-            
+            Speed = Speed * mousePosition.Normalize();
+            Position += Speed;
+            Speed += Velocity;
         }
     }
 }
