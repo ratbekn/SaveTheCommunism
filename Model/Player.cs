@@ -1,4 +1,6 @@
-﻿namespace SaveTheCommunism.Model
+﻿using SaveTheCommunism.Utilities;
+
+namespace SaveTheCommunism.Model
 {
     public class Player : Character
     {
@@ -13,6 +15,10 @@
         public void Recruit(Enemy enemy)
         {
             
+        }
+
+        public Player(int health, int damage, Vector position, Vector speed, Vector velocity) : base(health, damage, position, speed, velocity)
+        {
         }
     }
 }
