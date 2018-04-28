@@ -11,8 +11,8 @@ namespace SaveTheCommunism.Utilities
             Y = y;
         }
 
-        private readonly double X;
-        private readonly double Y;
+        public readonly double X;
+        public readonly double Y;
         private double Length => Sqrt(X * X + Y * Y);
         public double Angle => Atan2(Y, X);
         public static Vector Zero = new Vector(0, 0);
@@ -53,7 +53,7 @@ namespace SaveTheCommunism.Utilities
 
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
 
-        public static Vector operator *(Vector a, Vector b) => new Vector(a.Y - b.Y, -(a.X - b.X));
+        //public static Vector operator *(Vector a, Vector b) => new Vector(a.Y - b.Y, -(a.X - b.X));
 
         public Vector Normalize() => Length > 0 ? this * (1 / Length) : this;
 

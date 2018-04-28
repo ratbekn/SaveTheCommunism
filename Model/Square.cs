@@ -6,7 +6,7 @@
 
         public Square()
         {
-            
+
         }
     }
 }

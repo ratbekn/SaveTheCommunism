@@ -1,9 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
 {
-    public class Character
+    public abstract class Character
     {
         public int Health { get; set; }
         public int Damage { get; set; }
@@ -31,16 +33,48 @@ namespace SaveTheCommunism.Model
         private void TakeDamage(int damage)
         {
             Health -= damage;
+            UpdateIAlive();
         }
 
-        public void Update(Vector mousePosition)
+        private void UpdateIAlive()
+        {
+            if (Health <= 0)
+                IsAlive = false;
+        }
+
+        public void UpdateState(Vector mousePosition)
         {
             Speed = Speed.Rotate(mousePosition.Angle);
             Position += Speed;
             Speed += Velocity;
 
-            if (Health <= 0)
-                IsAlive = false;
+            //if (Health <= 0)
+            //    //изменить на исчезновение character
+            //    IsAlive = false;
         }
+
+        // установить соответствие с wasd
+        public enum Directions
+        {
+            Left,
+            Right,
+            Up,
+            Down
+        }
+
+        // добавить ограничения, что x < square.Width, y < square.Height
+        private Dictionary<Directions, Func<Vector, Vector>> movements = new Dictionary<Directions, Func<Vector, Vector>>
+        {
+            {Directions.Left, position => position.X > 0 ? new Vector(-1, 0) : Vector.Zero},
+            {Directions.Right, position => position.X >= 0 ? new Vector(1, 0) : Vector.Zero},
+            {Directions.Up, position => position.Y > 0 ? new Vector(0, -1) : Vector.Zero},
+            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 1) : Vector.Zero}
+        };
+
+        public void Move(Directions dir)
+        {
+            Position += movements[dir](Position);
+        }
+
     }
 }

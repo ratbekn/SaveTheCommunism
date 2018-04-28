@@ -37,9 +37,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenameMe.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\Enemy.cs" />
     <Compile Include="Model\Player.cs" />
