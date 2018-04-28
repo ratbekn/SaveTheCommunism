@@ -20,5 +20,10 @@ namespace SaveTheCommunism.Model
         {
             Health -= damage;
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }
