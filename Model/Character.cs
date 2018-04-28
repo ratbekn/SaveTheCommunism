@@ -24,7 +24,7 @@ namespace SaveTheCommunism.Model
 
         public void Update(Vector mousePosition)
         {
-            Speed = Speed * mousePosition.Normalize();
+            Speed = Speed.Rotate(mousePosition.Angle);
             Position += Speed;
             Speed += Velocity;
         }

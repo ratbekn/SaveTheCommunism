@@ -23,15 +23,15 @@ namespace SaveTheCommunism.Utilities
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) 
+            if (ReferenceEquals(null, obj))
                 return false;
-            
-            if (ReferenceEquals(this, obj)) 
+
+            if (ReferenceEquals(this, obj))
                 return true;
-            
-            if (obj.GetType() != GetType()) 
+
+            if (obj.GetType() != GetType())
                 return false;
-            
+
             return Equals((Vector)obj);
         }
 
@@ -53,7 +53,9 @@ namespace SaveTheCommunism.Utilities
 
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
 
-        public Vector Normalize() => Length > 0 ? this*(1/Length) : this;
+        public static Vector operator *(Vector a, Vector b) => new Vector(a.Y - b.Y, -(a.X - b.X));
+
+        public Vector Normalize() => Length > 0 ? this * (1 / Length) : this;
 
         public Vector Rotate(double angle) => new Vector(X * Cos(angle) - Y * Sin(angle), X * Sin(angle) + Y * Cos(angle));
 
