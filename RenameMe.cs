@@ -32,9 +32,8 @@ namespace SaveTheCommunism
         public RenameMe()
         {
             //пофикси, чтобы путь был относительный
-            playerImage = new Bitmap(Image.FromFile("C:/Users/Света/Desktop/Save the communism/SaveTheCommunism/images/player.png"), 150, 150);
-            image = new Bitmap(Image.FromFile(
-                "C:\\Users\\Света\\Desktop\\Save the communism\\SaveTheCommunism\\images\\background.png"));
+            playerImage = new Bitmap(Image.FromFile("C:\\Users\\ratbe\\Desktop\\player.png"), 150, 150);
+            image = new Bitmap(Image.FromFile("C:\\Users\\ratbe\\Desktop\\background.png"));
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
             timer = new Timer { Interval = 20 };
             timer.Tick += TimerTick;
