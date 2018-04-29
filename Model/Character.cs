@@ -66,10 +66,10 @@ namespace SaveTheCommunism.Model
         // добавить ограничения, что x < square.Width, y < square.Height
         private Dictionary<Directions, Func<Vector, Vector>> movements = new Dictionary<Directions, Func<Vector, Vector>>
         {
-            {Directions.Left, position => position.X > 0 ? new Vector(-1, 0) : Vector.Zero},
-            {Directions.Right, position => position.X >= 0 ? new Vector(1, 0) : Vector.Zero},
-            {Directions.Up, position => position.Y > 0 ? new Vector(0, -1) : Vector.Zero},
-            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 1) : Vector.Zero},
+            {Directions.Left, position => position.X > 0 ? new Vector(-3, 0) : Vector.Zero},
+            {Directions.Right, position => position.X >= 0 ? new Vector(3, 0) : Vector.Zero},
+            {Directions.Up, position => position.Y > 0 ? new Vector(0, -3) : Vector.Zero},
+            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 3) : Vector.Zero},
             {Directions.None, position => Vector.Zero}
         };
 

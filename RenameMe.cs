@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -8,7 +9,7 @@ using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism
 {
-    public class GameForm : Form
+    public class RenameMe : Form
     {
         private readonly Image playerImage;
         private readonly Player player;
@@ -19,21 +20,19 @@ namespace SaveTheCommunism
         private bool down;
         private readonly Size spaceSize = new Size(800, 600);
         private readonly Image image;
-        private int iterationIndex;
         private string helpText;
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
-            helpText = "Use wasd to control player";
-            Text = helpText;
+            Text = "Use wasd to control player";
             WindowState = FormWindowState.Maximized;
         }
 
-        public GameForm()
+        public RenameMe()
         {
-            //пофикси, чтобы путь можно было написать относительный 
+            //пофикси, чтобы путь был относительный
             playerImage = new Bitmap(Image.FromFile("C:/Users/Света/Desktop/Save the communism/SaveTheCommunism/images/player.png"), 150, 150);
             image = new Bitmap(spaceSize.Width, spaceSize.Height, PixelFormat.Format32bppArgb);
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
@@ -46,7 +45,6 @@ namespace SaveTheCommunism
         private void TimerTick(object sender, EventArgs e)
         {
             MovePlayer(player);
-            Text = helpText;
             Invalidate();
             Update();
         }
@@ -71,16 +69,18 @@ namespace SaveTheCommunism
             HandleKey(e.KeyCode, true);
         }
 
-        private void HandleKey(Keys e, bool down)
+        private void HandleKey(Keys e, bool wasDown)
         {
-            if (e == Keys.A)
-                left = down;
-            if (e == Keys.D)
-                right = down;
-            if (e == Keys.W)
-                up = down;
-            if (e == Keys.S)
-                this.down = down;
+            var keysActions = new Dictionary<Keys, Action>
+            {
+                {Keys.A, () => left = wasDown },
+                {Keys.D, () => right = wasDown },
+                {Keys.W, () => up = wasDown },
+                {Keys.S, () => down = wasDown },
+            };
+            if (!keysActions.ContainsKey(e))
+                return;
+            keysActions[e]();
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -102,11 +102,8 @@ namespace SaveTheCommunism
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.FillRectangle(Brushes.White, ClientRectangle);
 
-            var matrix = g.Transform;
-
             if (timer.Enabled)
-            {
-                g.Transform = matrix;
+            { 
                 g.DrawImage(playerImage, new Point((int)player.Position.X, (int)player.Position.Y));
             }
         }
