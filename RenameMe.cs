@@ -18,7 +18,6 @@ namespace SaveTheCommunism
         private bool left;
         private bool up;
         private bool down;
-        private readonly Size spaceSize = new Size(800, 600);
         private readonly Image image;
         private string helpText;
 
@@ -34,7 +33,8 @@ namespace SaveTheCommunism
         {
             //пофикси, чтобы путь был относительный
             playerImage = new Bitmap(Image.FromFile("C:/Users/Света/Desktop/Save the communism/SaveTheCommunism/images/player.png"), 150, 150);
-            image = new Bitmap(spaceSize.Width, spaceSize.Height, PixelFormat.Format32bppArgb);
+            image = new Bitmap(Image.FromFile(
+                "C:\\Users\\Света\\Desktop\\Save the communism\\SaveTheCommunism\\images\\background.png"));
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
             timer = new Timer { Interval = 20 };
             timer.Tick += TimerTick;
@@ -91,16 +91,14 @@ namespace SaveTheCommunism
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.FloralWhite, ClientRectangle);
-            var g = Graphics.FromImage(image);
-            DrawTo(g);
-            e.Graphics.DrawImage(image, (ClientRectangle.Width - image.Width) / 2, (ClientRectangle.Height - image.Height) / 2);
+            DrawTo(e.Graphics);
         }
 
         private void DrawTo(Graphics g)
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.FillRectangle(Brushes.White, ClientRectangle);
+            // относительная ссылка
+            g.DrawImage(image, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
 
             if (timer.Enabled)
             { 
