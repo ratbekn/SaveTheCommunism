@@ -42,16 +42,16 @@ namespace SaveTheCommunism.Model
                 IsAlive = false;
         }
 
-        public void UpdateState(Vector mousePosition)
-        {
-            Speed = Speed.Rotate(mousePosition.Angle);
-            Position += Speed;
-            Speed += Velocity;
+        //public void UpdateState(Vector mousePosition)
+        //{
+        //    Speed = Speed.Rotate(mousePosition.Angle);
+        //    Position += Speed;
+        //    Speed += Velocity;
 
-            //if (Health <= 0)
-            //    //изменить на исчезновение character
-            //    IsAlive = false;
-        }
+        //    //if (Health <= 0)
+        //    //    //изменить на исчезновение character
+        //    //    IsAlive = false;
+        //}
 
         public enum Directions
         {
