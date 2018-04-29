@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Drawing;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
@@ -53,7 +53,6 @@ namespace SaveTheCommunism.Model
             //    IsAlive = false;
         }
 
-        // установить соответствие с wasd
         public enum Directions
         {
             Left,
@@ -63,19 +62,18 @@ namespace SaveTheCommunism.Model
             None
         }
 
-        // добавить ограничения, что x < square.Width, y < square.Height
-        private Dictionary<Directions, Func<Vector, Vector>> movements = new Dictionary<Directions, Func<Vector, Vector>>
+        private readonly Dictionary<Directions, Func<Vector, Size,Vector>> movements = new Dictionary<Directions, Func<Vector, Size,Vector>>
         {
-            {Directions.Left, position => position.X >= 3 ? new Vector(-3, 0) : Vector.Zero},
-            {Directions.Right, position => position.X >= 0 ? new Vector(3, 0) : Vector.Zero},
-            {Directions.Up, position => position.Y >= 3 ? new Vector(0, -3) : Vector.Zero},
-            {Directions.Down, position => position.Y >= 0 ? new Vector(0, 3) : Vector.Zero},
-            {Directions.None, position => Vector.Zero}
+            {Directions.Left, (position, size) => position.X >= 3 ? new Vector(-3, 0) : Vector.Zero},
+            {Directions.Right, (position, size) => position.X <= size.Width - 3 ? new Vector(3, 0) : Vector.Zero},
+            {Directions.Up, (position, size) => position.Y >= 3 ? new Vector(0, -3) : Vector.Zero},
+            {Directions.Down, (position, size) => position.Y <= size.Height - 3 ? new Vector(0, 3) : Vector.Zero},
+            {Directions.None, (position, size) => Vector.Zero}
         };
 
-        public void Move(Directions dir)
+        public void Move(Directions dir, Size size)
         {
-            Position += movements[dir](Position);
+            Position += movements[dir](Position, size);
         }
 
     }

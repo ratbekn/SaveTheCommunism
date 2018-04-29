@@ -44,12 +44,12 @@ namespace SaveTheCommunism
 
         private void TimerTick(object sender, EventArgs e)
         {
-            MovePlayer(player);
+            MovePlayer();
             Invalidate();
             Update();
         }
 
-        public void MovePlayer(Player player)
+        public void MovePlayer()
         {
             var dir = Character.Directions.None;
             if (right)
@@ -60,7 +60,7 @@ namespace SaveTheCommunism
                 dir = Character.Directions.Up;
             if (down)
                 dir = Character.Directions.Down;
-            player.Move(dir);
+            player.Move(dir, ClientRectangle.Size - playerImage.Size);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -97,7 +97,6 @@ namespace SaveTheCommunism
         private void DrawTo(Graphics g)
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            // относительная ссылка
             g.DrawImage(image, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
 
             if (timer.Enabled)
