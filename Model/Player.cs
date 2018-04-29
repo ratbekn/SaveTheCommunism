@@ -24,13 +24,5 @@ namespace SaveTheCommunism.Model
         //{
 
         //}
-
-        //это дичь, потом убрать
-        //private void SetState(Vector position, bool isHit)
-        //{
-        //    StateChanged?.Invoke(position, isHit);
-        //}
-
-        //public event Action<Vector, bool> StateChanged;
     }
 }

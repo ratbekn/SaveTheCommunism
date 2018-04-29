@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
@@ -18,14 +19,28 @@ namespace SaveTheCommunism.Model
         //}
 
         // поправить для адекватных параметров
-        private void GetRandomEnemy()
+        //private void GetRandomEnemy(Size squareSize)
+        //{
+        //    var random = new Random();
+        //    Health = random.Next(10);
+        //    Damage = random.Next(5);
+        //    Position = new Vector(random.Next(squareSize.Width), random.Next(squareSize.Height));
+        //    Speed = new Vector(random.Next(5), random.Next(5));
+        //    Velocity = new Vector(random.Next(5), random.Next(5));
+        //}
+
+        public static Vector GetRandomEnemyPosition(Size squareSize)
         {
             var random = new Random();
-            Health = random.Next(10);
-            Damage = random.Next(5);
-            //Position = new Vector(random.Next(square.Width, square.Height));
-            Speed = new Vector(random.Next(5), random.Next(5));
-            Velocity = new Vector(random.Next(5), random.Next(5));
+            return new Vector(random.Next(squareSize.Width), random.Next(squareSize.Height));
+        }
+
+        public void Move(Size squareSize)
+        {
+            var random = new Random();
+            Directions dir;
+            Enum.TryParse(random.Next(5).ToString(), out dir);
+            Move(dir, squareSize);
         }
     }
 }

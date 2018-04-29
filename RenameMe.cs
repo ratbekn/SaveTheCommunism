@@ -12,7 +12,9 @@ namespace SaveTheCommunism
     public class RenameMe : Form
     {
         private readonly Image playerImage;
+        private readonly Image enemyImage;
         private readonly Player player;
+        private readonly List<Enemy> enemies;
         private readonly Timer timer;
         private bool right;
         private bool left;
@@ -32,8 +34,11 @@ namespace SaveTheCommunism
         public RenameMe()
         {
             //пофикси, чтобы путь был относительный
-            playerImage = new Bitmap(Image.FromFile("C:\\Users\\ratbe\\Desktop\\player.png"), 150, 150);
-            image = new Bitmap(Image.FromFile("C:\\Users\\ratbe\\Desktop\\background.png"));
+            playerImage = new Bitmap(Image.FromFile("C:/Users/Света/Desktop/Save the communism/SaveTheCommunism/images/player.png"), 150, 150);
+            enemyImage = new Bitmap(Image.FromFile("C:/Users/Света/Desktop/Save the communism/SaveTheCommunism/images/enemy.png"), 100, 100);
+            image = new Bitmap(Image.FromFile(
+                "C:\\Users\\Света\\Desktop\\Save the communism\\SaveTheCommunism\\images\\background.png"));
+            enemies = GetEnemies(2);
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
             timer = new Timer { Interval = 20 };
             timer.Tick += TimerTick;
@@ -44,6 +49,9 @@ namespace SaveTheCommunism
         private void TimerTick(object sender, EventArgs e)
         {
             MovePlayer();
+            foreach (var enemy in enemies)
+                enemy.Move(ClientRectangle.Size);
+
             Invalidate();
             Update();
         }
@@ -60,6 +68,26 @@ namespace SaveTheCommunism
             if (down)
                 dir = Character.Directions.Down;
             player.Move(dir, ClientRectangle.Size - playerImage.Size);
+        }
+
+        private List<Enemy> GetEnemies(int number)
+        {
+            var enems = new List<Enemy>();
+            var usedPos = new HashSet<Tuple<double, double>>();
+            for (var i = 0; i < number; i++)
+            {
+                var curEnemyPosition = Enemy.GetRandomEnemyPosition(ClientRectangle.Size);
+                var curTuple = Tuple.Create(curEnemyPosition.X, curEnemyPosition.Y);
+                if (!usedPos.Contains(curTuple))
+                {
+                    enems.Add(new Enemy(10, 2, curEnemyPosition, new Vector(1, 2), new Vector(2, 1)));
+                    usedPos.Add(curTuple);
+                }
+                else
+                    number++;
+            }
+
+            return enems;
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -99,7 +127,11 @@ namespace SaveTheCommunism
             g.DrawImage(image, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
 
             if (timer.Enabled)
-            { 
+            {
+                foreach (var enemy in enemies)
+                {
+                    g.DrawImage(enemyImage, new Point((int) enemy.Position.X, (int) enemy.Position.Y));
+                }
                 g.DrawImage(playerImage, new Point((int)player.Position.X, (int)player.Position.Y));
             }
         }
