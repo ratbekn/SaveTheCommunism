@@ -29,132 +29,143 @@ namespace SaveTheCommunism
         public Square()
         {
             InitializeComponent();
+            BackgroundImage = Properties.Resources.background;
+            BackgroundImageLayout = ImageLayout.Tile;
         }
 
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.label3 = new Label();
-            this.progressBar1 = new ProgressBar();
-            this.player = new PictureBox();
-            this.pictureBox1 = new PictureBox();
-            this.pictureBox2 = new PictureBox();
-            this.pictureBox3 = new PictureBox();
-            this.pictureBox4 = new PictureBox();
-            this.timer1 = new Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.player = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = Color.White;
-            this.label1.Location = new Point(69, 9);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(69, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(76, 25);
+            this.label1.Size = new System.Drawing.Size(76, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ammo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = Color.White;
-            this.label2.Location = new Point(302, 9);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(302, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new Size(73, 25);
+            this.label2.Size = new System.Drawing.Size(73, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Score";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = Color.White;
-            this.label3.Location = new Point(477, 9);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(477, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new Size(74, 25);
+            this.label3.Size = new System.Drawing.Size(74, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Heath";
-            this.label3.Click += new EventHandler(label3_Click);
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new Point(557, 12);
+            this.progressBar1.ForeColor = System.Drawing.Color.Black;
+            this.progressBar1.Location = new System.Drawing.Point(557, 12);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new Size(100, 23);
+            this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 3;
-            // 
-            // player
-            // 
-            this.player.Image = Properties.Resources.player_gun_up;
-            this.player.Location = new Point(450, 328);
-            this.player.Name = "player";
-            this.player.Size = new Size(43, 49);
-            this.player.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.player.TabIndex = 4;
-            this.player.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = Properties.Resources.enemy_stand_right;
-            this.pictureBox1.Location = new Point(96, 66);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new Size(33, 43);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "enemy";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = Properties.Resources.enemy_stand_down;
-            this.pictureBox2.Location = new Point(510, 90);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new Size(43, 33);
-            this.pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Tag = "enemy";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = Properties.Resources.enemy_stand_left;
-            this.pictureBox3.Location = new Point(759, 420);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new Size(33, 43);
-            this.pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 7;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Tag = "enemy";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = Properties.Resources.enemy_stand_up;
-            this.pictureBox4.Location = new Point(392, 461);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new Size(43, 33);
-            this.pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox4.TabIndex = 8;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Tag = "enemy";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 20;
-            this.timer1.Tick += new EventHandler(this.gameEngine);
+            this.timer1.Tick += new System.EventHandler(this.gameEngine);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Image = global::SaveTheCommunism.Properties.Resources.enemy_stand_up;
+            this.pictureBox4.Location = new System.Drawing.Point(392, 461);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(43, 33);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.TabIndex = 8;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "enemy";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::SaveTheCommunism.Properties.Resources.enemy_stand_left;
+            this.pictureBox3.Location = new System.Drawing.Point(759, 420);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(33, 43);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "enemy";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::SaveTheCommunism.Properties.Resources.enemy_stand_down;
+            this.pictureBox2.Location = new System.Drawing.Point(510, 90);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(43, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "enemy";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::SaveTheCommunism.Properties.Resources.enemy_stand_right;
+            this.pictureBox1.Location = new System.Drawing.Point(96, 66);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "enemy";
+            // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.Transparent;
+            this.player.Image = global::SaveTheCommunism.Properties.Resources.player_gun_up;
+            this.player.Location = new System.Drawing.Point(450, 328);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(43, 49);
+            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.player.TabIndex = 4;
+            this.player.TabStop = false;
             // 
             // Square
             // 
-            this.ClientSize = new Size(857, 523);
+            this.ClientSize = new System.Drawing.Size(857, 523);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -165,13 +176,13 @@ namespace SaveTheCommunism
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Square";
-            this.KeyDown += new KeyEventHandler(this.OnKeyDown);
-            this.KeyUp += new KeyEventHandler(this.OnKeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,13 +269,15 @@ namespace SaveTheCommunism
 
         private void DropAmmo()
         {
-            PictureBox ammo = new PictureBox();
-
-            ammo.Image = Properties.Resources.ammo;
-            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-            ammo.Left = rnd.Next(10, 890);
-            ammo.Top = rnd.Next(50, 600);
-            ammo.Tag = "ammo";
+            PictureBox ammo = new PictureBox
+            {
+                BackColor = Color.Transparent,
+                Image = Properties.Resources.ammo,
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Left = rnd.Next(10, 890),
+                Top = rnd.Next(50, 600),
+                Tag = "ammo"
+            };
             this.Controls.Add(ammo);
             ammo.BringToFront();
             player.BringToFront();
@@ -272,21 +285,26 @@ namespace SaveTheCommunism
 
         private void Shoot(string direct)
         {
-            bullet shoot = new bullet();
-            shoot.direction = direct;
-            shoot.bulletLeft = player.Left + (player.Width / 2);
-            shoot.bulletTop = player.Top + (player.Height / 2);
+            bullet shoot = new bullet
+            {
+                direction = direct,
+                bulletLeft = player.Left + (player.Width / 2),
+                bulletTop = player.Top + (player.Height / 2)
+            };
             shoot.mkBullet(this);
         }
 
         private void MakeEnemy()
         {
-            PictureBox enemy = new PictureBox();
-            enemy.Tag = "enemy";
-            enemy.Image = Properties.Resources.enemy_stand_down;
-            enemy.Left = rnd.Next(0, 900);
-            enemy.Top = rnd.Next(0, 800);
-            enemy.SizeMode = PictureBoxSizeMode.AutoSize;
+            PictureBox enemy = new PictureBox
+            {
+                BackColor = Color.Transparent,
+                Tag = "enemy",
+                Image = Properties.Resources.enemy_stand_down,
+                Left = rnd.Next(0, 900),
+                Top = rnd.Next(0, 800),
+                SizeMode = PictureBoxSizeMode.AutoSize
+            };
             this.Controls.Add(enemy);
             player.BringToFront();
         }
@@ -306,9 +324,6 @@ namespace SaveTheCommunism
 
             label1.Text = " Ammo: " + ammo;
             label2.Text = " Score: " + score;
-
-            if (playerHealth < 20)
-                progressBar1.ForeColor = Color.Red;
 
             if (goleft && player.Left > 0)
                 player.Left -= speed;

@@ -16,7 +16,7 @@ namespace SaveTheCommunism
 
         public void mkBullet(Form form)
         {
-            Bullet.BackColor = Color.Black;
+            Bullet.BackColor = Color.White;
             Bullet.Size = new Size(5, 5);
             Bullet.Tag = "bullet";
             Bullet.Left = bulletLeft;
