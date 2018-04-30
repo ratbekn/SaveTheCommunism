@@ -53,12 +53,12 @@ namespace SaveTheCommunism.Utilities
 
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
 
-        //public static Vector operator *(Vector a, Vector b) => new Vector(a.Y - b.Y, -(a.X - b.X));
-
         public Vector Normalize() => Length > 0 ? this * (1 / Length) : this;
 
         public Vector Rotate(double angle) => new Vector(X * Cos(angle) - Y * Sin(angle), X * Sin(angle) + Y * Cos(angle));
 
         public Vector BoundTo(Size size) => new Vector(Max(0, Min(size.Width, X)), Max(0, Min(size.Height, Y)));
+
+        public Point ToPoint() => new Point((int)X, (int)Y);
     }
 }

@@ -76,7 +76,7 @@ namespace SaveTheCommunism
             player.Move(dir, ClientRectangle.Size - playerImage.Size);
         }
 
-        private List<Enemy> GetEnemies(int number, Size squareSize)
+        public List<Enemy> GetEnemies(int number, Size squareSize)
         {
             var enems = new List<Enemy>();
             var usedPos = new HashSet<Tuple<double, double>>();
