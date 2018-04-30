@@ -38,7 +38,7 @@ namespace SaveTheCommunism.Model
         {
             var random = new Random();
             var temp = random.Next();
-            if (temp % 3 == 0)
+            if (temp % 2 == 0)
                 DoSmthg1(squareSize);
             else
                 DoSmthg2(squareSize, playerPosition);
@@ -50,11 +50,11 @@ namespace SaveTheCommunism.Model
             if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
                 dir = Directions.Right;
             if (Position.X < playerPosition.X && Position.Y > playerPosition.Y)
-                dir = Directions.Up;
+                dir = Directions.Down;
             if (Position.X > playerPosition.X && Position.Y < playerPosition.Y)
                 dir = Directions.Left;
             if (Position.X > playerPosition.X && Position.Y > playerPosition.Y)
-                dir = Directions.Down;
+                dir = Directions.Up;
             Move(dir, squareSize);
         }
 

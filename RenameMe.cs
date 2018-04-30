@@ -35,7 +35,7 @@ namespace SaveTheCommunism
             enemyImage = Properties.Resources.enemy;
             BackgroundImage = new Bitmap(Properties.Resources.background, 64, 64);
             BackgroundImageLayout = ImageLayout.Tile;
-            enemies = GetEnemies(2);
+            enemies = GetEnemies(2, Screen.PrimaryScreen.Bounds.Size);
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
             timer1 = new Timer { Interval = 20 };
             timer2 = new Timer { Interval = 500};
@@ -49,9 +49,6 @@ namespace SaveTheCommunism
         private void Timer1Tick1(object sender, EventArgs e)
         {
             MovePlayer();
-            //foreach (var enemy in enemies)
-            //    enemy.Move(ClientRectangle.Size, player.Position);
-
             Invalidate();
             Update();
         }
@@ -59,7 +56,7 @@ namespace SaveTheCommunism
         private void Timer1Tick2(object sender, EventArgs e)
         {
             foreach (var enemy in enemies)
-                enemy.Move(ClientRectangle.Size, player.Position);
+                enemy.Move(ClientRectangle.Size - enemyImage.Size, player.Position);
 
             Invalidate();
             Update();
@@ -79,13 +76,13 @@ namespace SaveTheCommunism
             player.Move(dir, ClientRectangle.Size - playerImage.Size);
         }
 
-        private List<Enemy> GetEnemies(int number)
+        private List<Enemy> GetEnemies(int number, Size squareSize)
         {
             var enems = new List<Enemy>();
             var usedPos = new HashSet<Tuple<double, double>>();
             for (var i = 0; i < number; i++)
             {
-                var curEnemyPosition = Enemy.GetRandomEnemyPosition(ClientRectangle.Size);
+                var curEnemyPosition = Enemy.GetRandomEnemyPosition(squareSize);
                 var curTuple = Tuple.Create(curEnemyPosition.X, curEnemyPosition.Y);
                 if (!usedPos.Contains(curTuple))
                 {
