@@ -22,7 +22,7 @@ namespace SaveTheCommunism
         {
             base.OnLoad(e);
             DoubleBuffered = true;
-            Text = "Use W,A,S,D keys to control player";
+            Text = "Use W,A,S,D keys to control player and Space for shoot";
             WindowState = FormWindowState.Maximized;
         }
 

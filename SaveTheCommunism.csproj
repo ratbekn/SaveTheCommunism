@@ -78,9 +78,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\player_stand_down.png" />
   </ItemGroup>
   <ItemGroup>
@@ -141,13 +138,13 @@
     <None Include="Resources\player_gun_up.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ammo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\bullet.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ammo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
