@@ -36,43 +36,43 @@ namespace SaveTheCommunism.Model
 
         public void Move(Size squareSize, Vector playerPosition)
         {
-            var random = new Random();
-            var temp = random.Next();
-            if (temp % 2 == 0)
-                DoSmthg1(squareSize);
-            else
+            //var random = new Random();
+            //var temp = random.Next();
+            //if (temp % 2 == 0)
+            //    DoSmthg1(squareSize);
+            //else
                 DoSmthg2(squareSize, playerPosition);
         }
 
         private void DoSmthg2(Size squareSize, Vector playerPosition)
         {
             var dir = Directions.None;
-            if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
+            if (Position.X <= playerPosition.X && Position.Y < playerPosition.Y)
                 dir = Directions.Right;
-            if (Position.X < playerPosition.X && Position.Y > playerPosition.Y)
+            if (Position.X < playerPosition.X && Position.Y >= playerPosition.Y)
                 dir = Directions.Down;
-            if (Position.X > playerPosition.X && Position.Y < playerPosition.Y)
+            if (Position.X > playerPosition.X && Position.Y <= playerPosition.Y)
                 dir = Directions.Left;
-            if (Position.X > playerPosition.X && Position.Y > playerPosition.Y)
+            if (Position.X >= playerPosition.X && Position.Y > playerPosition.Y)
                 dir = Directions.Up;
             Move(dir, squareSize);
         }
 
-        private void DoSmthg1(Size squareSize)
-        {
-            var random = new Random();
-            var num = 30000;
-            var ran = random.Next(num);
-            var dir = Directions.None;
-            if (ran < num / 4)
-                dir = Directions.Left;
-            if (ran >= num / 4 && ran < num / 2)
-                dir = Directions.Down;
-            if (ran >= num / 2 && ran < num / 2 * 3)
-                dir = Directions.Up;
-            if (ran >= num / 2 * 3 && ran < num)
-                dir = Directions.Right;
-            Move(dir, squareSize);
-        }
+        //private void DoSmthg1(Size squareSize)
+        //{
+        //    var random = new Random();
+        //    var num = 30000;
+        //    var ran = random.Next(num);
+        //    var dir = Directions.None;
+        //    if (ran < num / 4)
+        //        dir = Directions.Left;
+        //    if (ran >= num / 4 && ran < num / 2)
+        //        dir = Directions.Down;
+        //    if (ran >= num / 2 && ran < num / 2 * 3)
+        //        dir = Directions.Up;
+        //    if (ran >= num / 2 * 3 && ran < num)
+        //        dir = Directions.Right;
+        //    Move(dir, squareSize);
+        //}
     }
 }

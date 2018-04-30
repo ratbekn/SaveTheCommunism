@@ -35,10 +35,10 @@ namespace SaveTheCommunism
             enemyImage = Properties.Resources.enemy;
             BackgroundImage = new Bitmap(Properties.Resources.background, 64, 64);
             BackgroundImageLayout = ImageLayout.Tile;
-            enemies = GetEnemies(2, Screen.PrimaryScreen.Bounds.Size);
+            enemies = GetEnemies(2, Screen.PrimaryScreen.Bounds.Size - enemyImage.Size);
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
             timer1 = new Timer { Interval = 20 };
-            timer2 = new Timer { Interval = 500};
+            timer2 = new Timer { Interval = 50};
             timer1.Tick += Timer1Tick1;
             timer2.Tick += Timer1Tick2;
             timer1.Start();
