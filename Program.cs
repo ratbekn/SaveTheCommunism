@@ -10,7 +10,7 @@ namespace SaveTheCommunism
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var form = new RenameMe();
+            var form = new Square();
             Application.Run(form);
         }
     }

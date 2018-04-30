@@ -1,12 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
 {
+    public enum Directions
+    {
+        Up,
+        UpRight,
+        Right,
+        RightDown,
+        Down,
+        DownLeft,
+        Left,
+        LeftUp,
+        None
+    }
+
     public abstract class Character
     {
+        public Dictionary<Directions, Vector> Movements = new Dictionary<Directions, Vector>
+        {
+            { Directions.Up, new Vector (0, -1) },
+            { Directions.UpRight, new Vector(1, -1) },
+            { Directions.Right, new Vector(1, 0) },
+            { Directions.RightDown, new Vector(1, 1) },
+            { Directions.Down, new Vector(0, 1) },
+            { Directions.DownLeft, new Vector(-1, 1) },
+            { Directions.Left, new Vector(-1, 0) },
+            { Directions.LeftUp, new Vector(-1, -1) },
+            { Directions.None, new Vector(0, 0) }
+        };
+
         public int Health { get; set; }
         public int Damage { get; set; }
         public bool IsAlive { get; set; }
@@ -42,39 +66,11 @@ namespace SaveTheCommunism.Model
                 IsAlive = false;
         }
 
-        //public void UpdateState(Vector mousePosition)
-        //{
-        //    Speed = Speed.Rotate(mousePosition.Angle);
-        //    Position += Speed;
-        //    Speed += Velocity;
-
-        //    //if (Health <= 0)
-        //    //    //изменить на исчезновение character
-        //    //    IsAlive = false;
-        //}
-
-        public enum Directions
+        public void Move(Directions direction)
         {
-            Left,
-            Right,
-            Up,
-            Down,
-            None
+            Speed *= Movements[direction];
+            Position += Speed;
+            Speed += Velocity;
         }
-
-        private readonly Dictionary<Directions, Func<Vector, Size,Vector>> movements = new Dictionary<Directions, Func<Vector, Size,Vector>>
-        {
-            {Directions.Left, (position, size) => position.X >= 3 ? new Vector(-3, 0) : Vector.Zero},
-            {Directions.Right, (position, size) => position.X <= size.Width - 3 ? new Vector(3, 0) : Vector.Zero},
-            {Directions.Up, (position, size) => position.Y >= 3 ? new Vector(0, -3) : Vector.Zero},
-            {Directions.Down, (position, size) => position.Y <= size.Height - 3 ? new Vector(0, 3) : Vector.Zero},
-            {Directions.None, (position, size) => Vector.Zero}
-        };
-
-        public void Move(Directions dir, Size size)
-        {
-            Position += movements[dir](Position, size);
-        }
-
     }
 }
