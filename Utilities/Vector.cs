@@ -51,6 +51,8 @@ namespace SaveTheCommunism.Utilities
 
         public static Vector operator *(double k, Vector a) => a * k;
 
+        public static Vector operator *(Vector a, Vector b) => new Vector(a.X * b.X, a.Y * b.Y);
+
         public static Vector operator +(Vector a, Vector b) => new Vector(a.X + b.X, a.Y + b.Y);
 
         //public static Vector operator *(Vector a, Vector b) => new Vector(a.Y - b.Y, -(a.X - b.X));
