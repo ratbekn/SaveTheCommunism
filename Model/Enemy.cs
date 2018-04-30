@@ -6,7 +6,6 @@ namespace SaveTheCommunism.Model
 {
     public class Enemy : Character
     {
-        // надо где-нибудь генерировать разные значения для врагов
         public Enemy(int health, int damage, Vector position, Vector speed, Vector velocity)
             : base(health, damage, position, speed, velocity)
         {
@@ -35,11 +34,44 @@ namespace SaveTheCommunism.Model
             return new Vector(random.Next(squareSize.Width), random.Next(squareSize.Height));
         }
 
-        public void Move(Size squareSize)
+        public void Move(Size squareSize, Vector playerPosition)
         {
             var random = new Random();
-            Directions dir;
-            Enum.TryParse(random.Next(5).ToString(), out dir);
+            var temp = random.Next();
+            if (temp % 3 == 0)
+                DoSmthg1(squareSize);
+            else
+                DoSmthg2(squareSize, playerPosition);
+        }
+
+        private void DoSmthg2(Size squareSize, Vector playerPosition)
+        {
+            var dir = Directions.None;
+            if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
+                dir = Directions.Right;
+            if (Position.X < playerPosition.X && Position.Y > playerPosition.Y)
+                dir = Directions.Up;
+            if (Position.X > playerPosition.X && Position.Y < playerPosition.Y)
+                dir = Directions.Left;
+            if (Position.X > playerPosition.X && Position.Y > playerPosition.Y)
+                dir = Directions.Down;
+            Move(dir, squareSize);
+        }
+
+        private void DoSmthg1(Size squareSize)
+        {
+            var random = new Random();
+            var num = 30000;
+            var ran = random.Next(num);
+            var dir = Directions.None;
+            if (ran < num / 4)
+                dir = Directions.Left;
+            if (ran >= num / 4 && ran < num / 2)
+                dir = Directions.Down;
+            if (ran >= num / 2 && ran < num / 2 * 3)
+                dir = Directions.Up;
+            if (ran >= num / 2 * 3 && ran < num)
+                dir = Directions.Right;
             Move(dir, squareSize);
         }
     }

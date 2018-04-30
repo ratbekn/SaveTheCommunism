@@ -14,7 +14,8 @@ namespace SaveTheCommunism
         private readonly Image enemyImage;
         private readonly Player player;
         private readonly List<Enemy> enemies;
-        private readonly Timer timer;
+        private readonly Timer timer1;
+        private readonly Timer timer2;
         private bool right;
         private bool left;
         private bool up;
@@ -30,24 +31,35 @@ namespace SaveTheCommunism
 
         public RenameMe()
         {
-            //пофикси, чтобы путь был относительный
             playerImage = Properties.Resources.player;
             enemyImage = Properties.Resources.enemy;
             BackgroundImage = new Bitmap(Properties.Resources.background, 64, 64);
             BackgroundImageLayout = ImageLayout.Tile;
             enemies = GetEnemies(2);
             player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
-            timer = new Timer { Interval = 20 };
-            timer.Tick += TimerTick;
-            timer.Start();
+            timer1 = new Timer { Interval = 20 };
+            timer2 = new Timer { Interval = 500};
+            timer1.Tick += Timer1Tick1;
+            timer2.Tick += Timer1Tick2;
+            timer1.Start();
+            timer2.Start();
             KeyPreview = true;
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void Timer1Tick1(object sender, EventArgs e)
         {
             MovePlayer();
+            //foreach (var enemy in enemies)
+            //    enemy.Move(ClientRectangle.Size, player.Position);
+
+            Invalidate();
+            Update();
+        }
+
+        private void Timer1Tick2(object sender, EventArgs e)
+        {
             foreach (var enemy in enemies)
-                enemy.Move(ClientRectangle.Size);
+                enemy.Move(ClientRectangle.Size, player.Position);
 
             Invalidate();
             Update();
@@ -122,7 +134,7 @@ namespace SaveTheCommunism
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            if (timer.Enabled)
+            if (timer1.Enabled)
             {
                 foreach (var enemy in enemies)
                 {
