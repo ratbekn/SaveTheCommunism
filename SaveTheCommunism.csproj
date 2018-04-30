@@ -126,6 +126,27 @@
     <None Include="Resources\enemy_hit_up.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\bullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ammo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_up.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\player_gun_down.png" />
   </ItemGroup>
   <ItemGroup>
@@ -136,15 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\player_gun_up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bullet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ammo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

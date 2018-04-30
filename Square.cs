@@ -155,7 +155,7 @@ namespace SaveTheCommunism
             // player
             // 
             this.player.BackColor = System.Drawing.Color.Transparent;
-            this.player.Image = global::SaveTheCommunism.Properties.Resources.player_gun_up;
+            this.player.Image = global::SaveTheCommunism.Properties.Resources.player_move_gun_up;
             this.player.Location = new System.Drawing.Point(450, 328);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(43, 49);
@@ -215,28 +215,28 @@ namespace SaveTheCommunism
             {
                 goleft = true;
                 facing = "left";
-                player.Image = Properties.Resources.player_gun_left;
+                player.Image = Properties.Resources.player_move_gun_left;
             }
 
             if (e.KeyCode == Keys.D)
             {
                 goright = true;
                 facing = "right";
-                player.Image = Properties.Resources.player_gun_right;
+                player.Image = Properties.Resources.player_move_gun_right;
             }
 
             if (e.KeyCode == Keys.W)
             {
                 goup = true;
                 facing = "up";
-                player.Image = Properties.Resources.player_gun_up;
+                player.Image = Properties.Resources.player_move_gun_up;
             }
 
             if (e.KeyCode == Keys.S)
             {
                 godown = true;
                 facing = "down";
-                player.Image = Properties.Resources.player_gun_down;
+                player.Image = Properties.Resources.player_move_gun_down;
             }
         }
 
@@ -291,6 +291,14 @@ namespace SaveTheCommunism
                 bulletLeft = player.Left + (player.Width / 2),
                 bulletTop = player.Top + (player.Height / 2)
             };
+            if (direct == "up")
+                player.Image = Properties.Resources.player_gun_up;
+            if (direct == "right")
+                player.Image = Properties.Resources.player_gun_right;
+            if (direct == "down")
+                player.Image = Properties.Resources.player_gun_down;
+            if (direct == "left")
+                player.Image = Properties.Resources.player_gun_left;
             shoot.mkBullet(this);
         }
 
@@ -363,9 +371,7 @@ namespace SaveTheCommunism
                 if (x is PictureBox && x.Tag != null && x.Tag.Equals("enemy"))
                 {
                     if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
-                    {
                         playerHealth--;
-                    }
 
                     if (((PictureBox)x).Left > player.Left)
                     {
