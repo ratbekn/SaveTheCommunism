@@ -304,7 +304,7 @@ namespace SaveTheCommunism
 
         private void MakeEnemy()
         {
-            PictureBox enemy = new PictureBox
+            var enemy = new PictureBox
             {
                 BackColor = Color.Transparent,
                 Tag = "enemy",
