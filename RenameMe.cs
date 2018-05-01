@@ -36,7 +36,7 @@ namespace SaveTheCommunism
             BackgroundImage = new Bitmap(Properties.Resources.background, 64, 64);
             BackgroundImageLayout = ImageLayout.Tile;
             enemies = GetEnemies(2, Screen.PrimaryScreen.Bounds.Size - enemyImage.Size);
-            player = new Player(10, 2, new Vector(10, 10), new Vector(4, 4), new Vector(1, 1));
+            player = new Player(10, 2, new Vector(10, 10), new Vector(5, 5));
             timer1 = new Timer { Interval = 20 };
             timer2 = new Timer { Interval = 50 };
             timer1.Tick += Timer1Tick1;
@@ -73,7 +73,8 @@ namespace SaveTheCommunism
                 dir = Directions.Up;
             if (down)
                 dir = Directions.Down;
-            player.Move(dir);
+            if (dir != Directions.None)
+                player.Move(dir);
             //player.Move(dir, ClientRectangle.Size - playerImage.Size);
         }
 
@@ -87,7 +88,7 @@ namespace SaveTheCommunism
                 var curTuple = Tuple.Create(curEnemyPosition.X, curEnemyPosition.Y);
                 if (!usedPos.Contains(curTuple))
                 {
-                    enems.Add(new Enemy(10, 2, curEnemyPosition, new Vector(1, 2), new Vector(2, 1)));
+                    enems.Add(new Enemy(10, 2, curEnemyPosition, new Vector(1, 2)));
                     usedPos.Add(curTuple);
                 }
                 else

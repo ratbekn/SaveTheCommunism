@@ -8,8 +8,8 @@ namespace SaveTheCommunism.Model
 {
     public class Player : Character
     {
-        public Player(int health, int damage, Vector position, Vector speed, Vector velocity)
-            : base(health, damage, position, speed, velocity)
+        public Player(int health, int damage, Vector position, Vector speed)
+            : base(health, damage, position, speed)
         {
 
         }

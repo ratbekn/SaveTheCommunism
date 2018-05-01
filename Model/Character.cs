@@ -37,16 +37,14 @@ namespace SaveTheCommunism.Model
         public Vector Position { get; set; }
         public Vector Direction { get; set; }
         public Vector Speed { get; set; }
-        public Vector Velocity { get; set; }
 
-        public Character(int health, int damage, Vector position, Vector speed, Vector velocity)
+        public Character(int health, int damage, Vector position, Vector speed)
         {
             IsAlive = true;
             Health = health;
             Damage = damage;
             Position = position;
             Speed = speed;
-            Velocity = velocity;
         }
 
         public virtual void Hit(Character another)
@@ -69,10 +67,7 @@ namespace SaveTheCommunism.Model
         public void Move(Directions direction)
         {
             //Position += Movements[direction] * Speed;
-
-            Speed *= Movements[direction];
-            Position += Speed;
-            Speed += Velocity;
+            Position += Speed * Movements[direction];
         }
     }
 }
