@@ -36,9 +36,9 @@ namespace SaveTheCommunism
             BackgroundImage = new Bitmap(Properties.Resources.background, 64, 64);
             BackgroundImageLayout = ImageLayout.Tile;
             enemies = GetEnemies(2, Screen.PrimaryScreen.Bounds.Size - enemyImage.Size);
-            player = new Player(10, 2, new Vector(10, 10), new Vector(4, 2), new Vector(1, 1));
+            player = new Player(10, 2, new Vector(10, 10), new Vector(4, 4), new Vector(1, 1));
             timer1 = new Timer { Interval = 20 };
-            timer2 = new Timer { Interval = 50};
+            timer2 = new Timer { Interval = 50 };
             timer1.Tick += Timer1Tick1;
             timer2.Tick += Timer1Tick2;
             timer1.Start();
@@ -48,7 +48,7 @@ namespace SaveTheCommunism
 
         private void Timer1Tick1(object sender, EventArgs e)
         {
-            //MovePlayer();
+            MovePlayer();
             Invalidate();
             Update();
         }
@@ -62,19 +62,20 @@ namespace SaveTheCommunism
             Update();
         }
 
-        //public void MovePlayer()
-        //{
-        //    var dir = Character.Directions.None;
-        //    if (right)
-        //        dir = Character.Directions.Right;
-        //    if (left)
-        //        dir = Character.Directions.Left;
-        //    if (up)
-        //        dir = Character.Directions.Up;
-        //    if (down)
-        //        dir = Character.Directions.Down;
-        //    player.Move(dir, ClientRectangle.Size - playerImage.Size);
-        //}
+        public void MovePlayer()
+        {
+            var dir = Directions.None;
+            if (right)
+                dir = Directions.Right;
+            if (left)
+                dir = Directions.Left;
+            if (up)
+                dir = Directions.Up;
+            if (down)
+                dir = Directions.Down;
+            player.Move(dir);
+            //player.Move(dir, ClientRectangle.Size - playerImage.Size);
+        }
 
         public List<Enemy> GetEnemies(int number, Size squareSize)
         {
@@ -135,7 +136,7 @@ namespace SaveTheCommunism
             {
                 foreach (var enemy in enemies)
                 {
-                    g.DrawImage(enemyImage, new Point((int) enemy.Position.X, (int) enemy.Position.Y));
+                    g.DrawImage(enemyImage, new Point((int)enemy.Position.X, (int)enemy.Position.Y));
                 }
                 g.DrawImage(playerImage, new Point((int)player.Position.X, (int)player.Position.Y));
             }

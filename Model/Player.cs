@@ -35,7 +35,7 @@ namespace SaveTheCommunism.Model
                 .Select(enemy => enemy.Position.ToPoint())
                 .ToList();
             var pathToNextEnemy = GetPathToNearestEnemy(currentPosition, enemiesPositions, squareSize);
-            return pathToNextEnemy == null ? new List<Point>() : pathToNextEnemy; 
+            return pathToNextEnemy ?? new List<Point>(); 
         }
 
         private static List<Point> GetPathToNearestEnemy(Point initialPosition, List<Point> enemiesPositions, Size squareSize)

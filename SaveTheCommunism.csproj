@@ -59,6 +59,7 @@
     <Compile Include="Model\Square.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\CharacterTests.cs" />
     <Compile Include="Tests\DjkstraTests.cs" />
     <Compile Include="Utilities\Vector.cs" />
   </ItemGroup>

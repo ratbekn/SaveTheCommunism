@@ -24,6 +24,11 @@ namespace SaveTheCommunism.Model
             return new Vector(random.Next(squareSize.Width), random.Next(squareSize.Height));
         }
 
+        public void Move(Vector playerPosition)
+        {
+            var dir = movements;
+        }
+
         private readonly Dictionary<Directions, Func<Vector, Size, Vector>> movements = new Dictionary<Directions, Func<Vector, Size, Vector>>
         {
             {Directions.Left, (position, size) => position.X >= 3 ? new Vector(-3, 0) : Vector.Zero},

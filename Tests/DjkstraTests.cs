@@ -8,7 +8,7 @@ using SaveTheCommunism.Utilities;
 namespace SaveTheCommunism.Tests
 {
     [TestFixture]
-    public class ExtensionsTests
+    public class DjkstraTests
     {
         [Test]
         public void TestWithNoEnemy()
