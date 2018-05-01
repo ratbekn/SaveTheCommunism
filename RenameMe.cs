@@ -48,7 +48,7 @@ namespace SaveTheCommunism
 
         private void Timer1Tick1(object sender, EventArgs e)
         {
-            MovePlayer();
+            //MovePlayer();
             Invalidate();
             Update();
         }
@@ -62,19 +62,19 @@ namespace SaveTheCommunism
             Update();
         }
 
-        public void MovePlayer()
-        {
-            var dir = Character.Directions.None;
-            if (right)
-                dir = Character.Directions.Right;
-            if (left)
-                dir = Character.Directions.Left;
-            if (up)
-                dir = Character.Directions.Up;
-            if (down)
-                dir = Character.Directions.Down;
-            player.Move(dir, ClientRectangle.Size - playerImage.Size);
-        }
+        //public void MovePlayer()
+        //{
+        //    var dir = Character.Directions.None;
+        //    if (right)
+        //        dir = Character.Directions.Right;
+        //    if (left)
+        //        dir = Character.Directions.Left;
+        //    if (up)
+        //        dir = Character.Directions.Up;
+        //    if (down)
+        //        dir = Character.Directions.Down;
+        //    player.Move(dir, ClientRectangle.Size - playerImage.Size);
+        //}
 
         public List<Enemy> GetEnemies(int number, Size squareSize)
         {
