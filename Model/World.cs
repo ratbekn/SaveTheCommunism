@@ -38,7 +38,7 @@ namespace SaveTheCommunism.Model
             defaultDirection = direction;
             defaultNumberOfEnemies = numberOfEnemies;
 
-            player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, defaultDirection);
+            Player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, defaultDirection);
             supporters = new Dictionary<int, Supporter>();
             enemies = new Dictionary<int, Enemy>();
             for (var i = 0; i < defaultNumberOfEnemies; i++)
