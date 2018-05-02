@@ -7,9 +7,15 @@ namespace SaveTheCommunism.Model
 {
     public class Enemy : Character
     {
-        public Enemy(int health, int damage, Vector position, Vector speed, Directions initialMoveDirection)
-            : base(health, damage, position, speed, initialMoveDirection)
+        public Enemy(int health, int damage, Vector position, int speed, Directions initialMoveDirection)
+            : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)
         {
+        }
+
+        public Enemy(int health, int damage, int x, int y, int speed, Directions initialMoveDirection)
+            : base(health, damage, new Vector(x, y), new Vector(speed, speed), initialMoveDirection)
+        {
+
         }
 
         public void Move(Vector playerPosition)
