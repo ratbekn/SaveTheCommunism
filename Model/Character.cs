@@ -56,9 +56,6 @@ namespace SaveTheCommunism.Model
             Health -= damage;
         }
 
-        public void Move(Directions direction)
-        {
-            Position += Speed * Movements[direction];
-        }
+        public void Move(Directions direction) => Position += Speed * Movements[direction];
     }
 }

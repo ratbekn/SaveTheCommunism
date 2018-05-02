@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SaveTheCommunism.View;
 
 namespace SaveTheCommunism
 {
@@ -10,8 +11,7 @@ namespace SaveTheCommunism
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var form = new RenameMe();
-            Application.Run(form);
+            Application.Run(new Square());
         }
     }
 }

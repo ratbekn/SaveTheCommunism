@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using SaveTheCommunism.Utilities;
+using System.Collections.Generic;
 
 namespace SaveTheCommunism.Model
 {
@@ -48,7 +49,6 @@ namespace SaveTheCommunism.Model
                     : Position.X - playerPosition.X == Position.Y - playerPosition.Y
                         ? Directions.LeftUp
                         : Directions.Up;
-
 
             Move(direction);
         }
