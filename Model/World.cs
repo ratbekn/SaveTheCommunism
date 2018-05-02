@@ -18,6 +18,7 @@ namespace SaveTheCommunism.Model
         private int defaultDamage = 2;
         private Vector defaultSpeed = new Vector(1, 1);
         private int defaultNumberOfEnemies = 5;
+        private Directions defaultDirection = Directions.None;
         
 
         private Player player;
@@ -27,7 +28,7 @@ namespace SaveTheCommunism.Model
         public World(Size worldSize)
         {
             WorldSize = worldSize;
-            player = new Player(defaultHealth, defaultDamage, new Vector(worldSize.Width / 2, worldSize.Height / 2), defaultSpeed);
+            player = new Player(defaultHealth, defaultDamage, new Vector(worldSize.Width / 2, worldSize.Height / 2), defaultSpeed, defaultDirection);
             enemies = new Dictionary<int, Enemy>();
             for (var i = 0; i < defaultNumberOfEnemies; i++)
                 CreateEnemy();
@@ -36,8 +37,8 @@ namespace SaveTheCommunism.Model
 
         public void CreateEnemy()
         {
-            //дописать
-            enemies.Add(0, new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed));
+            var enemy = new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed, defaultDirection);
+            enemies.Add(enemy.GetHashCode(), enemy);
         }
 
         public Vector GetRandomEnemyPosition()
