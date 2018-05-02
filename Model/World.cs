@@ -13,16 +13,19 @@ namespace SaveTheCommunism.Model
         private const int DefaultDamage = 2;
         private const int DefaultSpeed = 1;
         private const int DefaultNumberOfEnemies = 5;
-        private const Directions DefaultDirection = Directions.None;
+        private const Directions DefaultDirection = Directions.Up;
 
         private const int DefaultPlayerHealth = 10;
         private const int DefaultPlayerDamage = 2;
         private const int DefaultPlayerSpeed = 2;
-        private const Directions DefaultPlayerDirection = Directions.None;
+        private const Directions DefaultPlayerDirection = Directions.Up;
 
         public Player Player { get; set; }
         private Dictionary<int, Enemy> enemies;
         private Dictionary<int, Supporter> supporters;
+
+        public int Ammo { get; set; }
+        public int Score { get; set; }
 
         private static World instance;
         public static World GetInstance(Size worldSize)
