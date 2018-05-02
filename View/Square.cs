@@ -12,6 +12,8 @@ namespace SaveTheCommunism.View
 {
     class Square : Form
     {
+        private Timer timer;
+
         private World World { get; set; }
         private Player Player { get; set; }
 
@@ -22,8 +24,10 @@ namespace SaveTheCommunism.View
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Tile;
 
-            World = World.GetInstance(ClientSize);
-            Player = World.Player;
+            timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += new EventHandler(OnTick);
+            timer.Start();
         }
 
         private void DrawStatisticsBar(Graphics graphics)
@@ -44,10 +48,30 @@ namespace SaveTheCommunism.View
             graphics.DrawString("Health: " + Player.Health, Font, brush, (width / 6) * 5, 0, stringFormat);
         }
 
+        private void DrawEnemies(Graphics graphics)
+        {
+            var enemies = World.Enemies;
+            foreach (var enemy in enemies)
+                graphics.DrawImage(Properties.Resources.enemy_stand_up, enemy.Position.ToPoint());
+        }
+        private void DrawPlayer(Graphics graphics)
+        {
+            graphics.DrawImage(Properties.Resources.player_move_gun_up, Player.Position.ToPoint());
+        }
+
+        private void OnTick(object sender, EventArgs e)
+        {
+            World.Update();
+            World.WorldSize = ClientSize;
+            Invalidate();
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
+            World = World.GetInstance(ClientSize);
+            Player = World.Player;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -56,6 +80,8 @@ namespace SaveTheCommunism.View
             var graphics = e.Graphics;
 
             DrawStatisticsBar(graphics);
+            DrawPlayer(graphics);
+            DrawEnemies(graphics);
         }
 
         protected override void OnResize(EventArgs e)
@@ -67,30 +93,34 @@ namespace SaveTheCommunism.View
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            var moveDirection = Directions.None;
             var downedKey = e.KeyCode;
-
-            switch (downedKey)
-            {
-                case Keys.W:
-                    moveDirection = Directions.Up;
-                    break;
-                case Keys.D:
-                    moveDirection = Directions.Right;
-                    break;
-                case Keys.S:
-                    moveDirection = Directions.Down;
-                    break;
-                case Keys.A:
-                    moveDirection = Directions.Left;
-                    break;
-            }
-            Player.MoveDirection = moveDirection;
+            Debug.WriteLine(Player.Position.ToString());
+            if (downedKey == Keys.W)
+                Player.MoveDirection = Directions.Up;
+            if (downedKey == Keys.D)
+                Player.MoveDirection = Directions.RightDown;
+            if (downedKey == Keys.S)
+                Player.MoveDirection = Directions.Down;
+            if (downedKey == Keys.A)
+                Player.MoveDirection = Directions.Left;
+            Debug.WriteLine(Player.Position.ToString());
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
         {
             base.OnKeyUp(e);
+
+            var uppedKey = e.KeyCode;
+
+            switch (uppedKey)
+            {
+                case Keys.W:
+                case Keys.D:
+                case Keys.S:
+                case Keys.A:
+                    Player.MoveDirection = Directions.None;
+                    break;
+            }
         }
     }
 }

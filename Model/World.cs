@@ -9,20 +9,23 @@ namespace SaveTheCommunism.Model
     class World
     {
         public Size WorldSize { get; set; }
-        private const int DefaultHealth = 10;
+        private const int DefaultHealth = 5;
         private const int DefaultDamage = 2;
-        private const int DefaultSpeed = 1;
-        private const int DefaultNumberOfEnemies = 5;
+        private const int DefaultSpeed = 3;
+        private const int DefaultNumberOfEnemies = 1;
         private const Directions DefaultDirection = Directions.Up;
 
-        private const int DefaultPlayerHealth = 10;
-        private const int DefaultPlayerDamage = 2;
-        private const int DefaultPlayerSpeed = 2;
+        private const int DefaultPlayerHealth = 100;
+        private const int DefaultPlayerDamage = 5;
+        private const int DefaultPlayerSpeed = 4;
         private const Directions DefaultPlayerDirection = Directions.Up;
 
         public Player Player { get; set; }
         private Dictionary<int, Enemy> enemies;
         private Dictionary<int, Supporter> supporters;
+
+        public IEnumerable<Enemy> Enemies { get => enemies.Values; set { } }
+        public IEnumerable<Supporter> Supporters { get => supporters.Values; set { } }
 
         public int Ammo { get; set; }
         public int Score { get; set; }
@@ -70,7 +73,9 @@ namespace SaveTheCommunism.Model
 
         public void Update()
         {
-            throw new NotImplementedException();
+            Player.Move();
+            foreach (var enemy in enemies.Values)
+                enemy.Move(Player.Position);
         }
     }
 }

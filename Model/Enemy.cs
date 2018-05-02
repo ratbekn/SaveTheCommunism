@@ -63,6 +63,9 @@ namespace SaveTheCommunism.Model
                     MoveDirection = Directions.Up;
             }
 
+            if (deltaX == 0 && deltaY == 0)
+                MoveDirection = Directions.None;
+
             Move();
         }
     }
