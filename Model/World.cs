@@ -11,27 +11,29 @@ namespace SaveTheCommunism.Model
     class World
     {
         public Size WorldSize { get; set; }
+        public Player player { get; set; }
 
         //TEMP VALUES
         //FIX
         private int defaultHealth = 10;
         private int defaultDamage = 2;
-        private Vector defaultSpeed = new Vector(1, 1);
+        private int defaultSpeed = 3;
         private int defaultNumberOfEnemies = 5;
         private Directions defaultDirection = Directions.None;
         
-
-        private Player player;
         private Dictionary<int, Enemy> enemies;
         private Dictionary<int, Supporter> supporters;
+
 
         public World(Size worldSize)
         {
             WorldSize = worldSize;
-            player = new Player(defaultHealth, defaultDamage, new Vector(worldSize.Width / 2, worldSize.Height / 2), defaultSpeed, defaultDirection);
+            player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, Directions.Up);
             enemies = new Dictionary<int, Enemy>();
+
             for (var i = 0; i < defaultNumberOfEnemies; i++)
                 CreateEnemy();
+
             supporters = new Dictionary<int, Supporter>();
         }
 

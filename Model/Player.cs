@@ -8,12 +8,19 @@ namespace SaveTheCommunism.Model
 {
     public class Player : Character
     {
-        public Player(int health, int damage, Vector position, Vector speed, Directions initialDirection)
-            : base(health, damage, position, speed, initialDirection)
+        public int RecruitAbility { get; set; }
+
+        public Player(int health, int damage, Vector position, int speed, Directions initialMoveDirection)
+            : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)
         {
+
         }
 
-        public int RecruitAbility { get; private set; }
+        public Player(int health, int damage, int x, int y, int speed, Directions direction)
+            : base(health, damage, new Vector(x, y), new Vector(speed, speed), direction)
+        {
+
+        }
 
         public override void Hit(Character another)
         {
@@ -21,7 +28,11 @@ namespace SaveTheCommunism.Model
             RecruitAbility++;
         }
 
-        //костыль
+        public void Shoot()
+        {
+
+        }
+        
         public void Recruit(Enemy enemy)
         {
             RecruitAbility--;
