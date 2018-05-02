@@ -13,17 +13,23 @@ namespace SaveTheCommunism.Model
         {
         }
 
-        public int RecruitAbility { get; set; }
+        public int RecruitAbility { get; private set; }
 
         public override void Hit(Character another)
         {
             base.Hit(another);
-            RecruitAbility += 1;
+            RecruitAbility++;
         }
 
+        //костыль
         public void Recruit(Enemy enemy)
         {
+            RecruitAbility--;
+        }
 
+        public void Shoot(Enemy enemy)
+        {
+            throw new NotImplementedException();
         }
     }
 }

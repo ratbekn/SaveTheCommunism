@@ -12,20 +12,43 @@ namespace SaveTheCommunism.Model
     {
         public Size WorldSize { get; set; }
 
+        //TEMP VALUES
+        //FIX
+        private int defaultHealth = 10;
+        private int defaultDamage = 2;
+        private Vector defaultSpeed = new Vector(1, 1);
+        private int defaultNumberOfEnemies = 5;
+        
+
+        private Player player;
+        private Dictionary<int, Enemy> enemies;
+        private Dictionary<int, Supporter> supporters;
+
         public World(Size worldSize)
         {
             WorldSize = worldSize;
+            player = new Player(defaultHealth, defaultDamage, new Vector(worldSize.Width / 2, worldSize.Height / 2), defaultSpeed);
+            enemies = new Dictionary<int, Enemy>();
+            for (var i = 0; i < defaultNumberOfEnemies; i++)
+                CreateEnemy();
+            supporters = new Dictionary<int, Supporter>();
         }
 
-        public Enemy CreateEnemy()
+        public void CreateEnemy()
         {
-            throw new NotImplementedException();
+            //дописать
+            enemies.Add(0, new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed));
         }
 
         public Vector GetRandomEnemyPosition()
         {
             var random = new Random();
             return new Vector(random.Next(WorldSize.Width), random.Next(WorldSize.Height));
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }
