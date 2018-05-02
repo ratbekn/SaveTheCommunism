@@ -16,7 +16,7 @@ namespace SaveTheCommunism.Model
         None
     }
 
-    public abstract class Character
+    public class Character
     {
         public Dictionary<Directions, Vector> Movements = new Dictionary<Directions, Vector>
         {
@@ -34,17 +34,17 @@ namespace SaveTheCommunism.Model
         public int Health { get; set; }
         public int Damage { get; set; }
         public Vector Position { get; set; }
-        public Directions Direction { get; set; }
+        public Directions MoveDirection { get; set; }
         public Vector Speed { get; set; }
         public bool IsAlive => Health > 0;
 
-        protected Character(int health, int damage, Vector position, Vector speed, Directions initialDirection)
+        protected Character(int health, int damage, Vector position, Vector speed, Directions initialMoveDirection)
         {
             Health = health;
             Damage = damage;
             Position = position;
             Speed = speed;
-            Direction = initialDirection;
+            MoveDirection = initialMoveDirection;
         }
 
         public virtual void Hit(Character another) => another.TakeDamage(Damage);

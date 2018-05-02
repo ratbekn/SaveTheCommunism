@@ -11,10 +11,17 @@ namespace SaveTheCommunism.Model
     class World
     {
         public Size WorldSize { get; set; }
+        public Player player { get; set; }
 
         public World(Size worldSize)
         {
             WorldSize = worldSize;
+            player = new Player(100, 5, WorldSize.Width / 2, WorldSize.Height / 2, 5, Directions.Up);
+        }
+
+        public void Update()
+        {
+            
         }
 
         public Enemy CreateEnemy()
