@@ -11,7 +11,6 @@ namespace SaveTheCommunism.Model
         public Player(int health, int damage, Vector position, Vector speed)
             : base(health, damage, position, speed)
         {
-
         }
 
         //переименовать, слишком общее название

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using NUnit.Framework;
 using SaveTheCommunism.Model;
@@ -30,7 +29,7 @@ namespace SaveTheCommunism.Tests
         }
 
         [Test]
-        public void TestWithTwoEnemy()
+        public void TestWithTwoEnemies()
         {
             var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 2));
             var enemy1 = new Enemy(10, 2, new Vector(10, 9), new Vector(1, 2));

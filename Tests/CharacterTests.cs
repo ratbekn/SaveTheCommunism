@@ -1,16 +1,14 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SaveTheCommunism.Model;
 using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Tests
 {
-    class TestCharacter: Character
+    internal class TestCharacter : Character
     {
         public TestCharacter(int health, int damage, Vector position, Vector speed)
             : base(health, damage, position, speed)
         {
-
         }
     }
 
@@ -37,6 +35,15 @@ namespace SaveTheCommunism.Tests
         }
 
         [Test]
+        public void TestNoMove()
+        {
+            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
+            character.Move(Directions.None);
+            Assert.AreEqual(character.Position.X, 10);
+            Assert.AreEqual(character.Position.Y, 10);
+        }
+
+        [Test]
         public void TestSimpleMove()
         {
             var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
@@ -51,10 +58,10 @@ namespace SaveTheCommunism.Tests
             var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 1));
             for (var i = 0; i < 4; i++)
                 character.Move(Directions.Right);
-            //character.Move(Directions.DownLeft);
-            //character.Move(Directions.Down);
-            //Assert.AreEqual(character.Position.X, 14);
-            //Assert.AreEqual(character.Position.Y, 10);
+            character.Move(Directions.DownLeft);
+            character.Move(Directions.Down);
+            Assert.AreEqual(character.Position.X, 13);
+            Assert.AreEqual(character.Position.Y, 12);
         }
     }
 }

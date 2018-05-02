@@ -56,7 +56,7 @@ namespace SaveTheCommunism
         private void Timer1Tick2(object sender, EventArgs e)
         {
             foreach (var enemy in enemies)
-                enemy.Move(ClientRectangle.Size - enemyImage.Size, player.Position);
+                enemy.Move(player.Position);
 
             Invalidate();
             Update();

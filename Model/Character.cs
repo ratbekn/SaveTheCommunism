@@ -14,7 +14,7 @@ namespace SaveTheCommunism.Model
         Left,
         LeftUp,
         None
-    };
+    }
 
     public abstract class Character
     {
@@ -33,14 +33,13 @@ namespace SaveTheCommunism.Model
 
         public int Health { get; set; }
         public int Damage { get; set; }
-        public bool IsAlive { get; set; }
         public Vector Position { get; set; }
         public Vector Direction { get; set; }
         public Vector Speed { get; set; }
+        public bool IsAlive => Health > 0;
 
-        public Character(int health, int damage, Vector position, Vector speed)
+        protected Character(int health, int damage, Vector position, Vector speed)
         {
-            IsAlive = true;
             Health = health;
             Damage = damage;
             Position = position;
@@ -55,18 +54,10 @@ namespace SaveTheCommunism.Model
         private void TakeDamage(int damage)
         {
             Health -= damage;
-            UpdateIsAlive();
-        }
-
-        private void UpdateIsAlive()
-        {
-            if (Health <= 0)
-                IsAlive = false;
         }
 
         public void Move(Directions direction)
         {
-            //Position += Movements[direction] * Speed;
             Position += Speed * Movements[direction];
         }
     }
