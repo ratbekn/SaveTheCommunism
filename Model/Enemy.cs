@@ -20,9 +20,8 @@ namespace SaveTheCommunism.Model
 
         public void Move(Vector playerPosition)
         {
-            var direction = Directions.None;
-            var deltaX = playerPosition.X - Position.X;
-            var deltaY = playerPosition.Y - Position.Y;
+            var deltaX = Math.Abs(playerPosition.X - Position.X);
+            var deltaY = Math.Abs(playerPosition.Y - Position.Y);
 
             if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
             {
