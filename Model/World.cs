@@ -19,8 +19,11 @@ namespace SaveTheCommunism.Model
         private int defaultDamage = 2;
         private int defaultSpeed = 3;
         private int defaultNumberOfEnemies = 5;
-        public Dictionary<int, Enemy> enemies;
-        public Dictionary<int, Supporter> supporters;
+        private Directions defaultDirection = Directions.None;
+        
+        private Dictionary<int, Enemy> enemies;
+        private Dictionary<int, Supporter> supporters;
+
 
         public World(Size worldSize)
         {
@@ -36,8 +39,8 @@ namespace SaveTheCommunism.Model
 
         public void CreateEnemy()
         {
-            //дописать
-            enemies.Add(0, new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed));
+            var enemy = new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed, defaultDirection);
+            enemies.Add(enemy.GetHashCode(), enemy);
         }
 
         public Vector GetRandomEnemyPosition()
