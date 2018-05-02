@@ -21,34 +21,48 @@ namespace SaveTheCommunism.Model
         public void Move(Vector playerPosition)
         {
             var direction = Directions.None;
+            var deltaX = playerPosition.X - Position.X;
+            var deltaY = playerPosition.Y - Position.Y;
 
             if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
-                direction = playerPosition.X - Position.X > playerPosition.Y - Position.Y
-                    ? Directions.Right
-                    : playerPosition.X - Position.X == playerPosition.Y - Position.Y
-                        ? Directions.RightDown
-                        : Directions.Down;
+            {
+                if (deltaX > deltaY)
+                    MoveDirection = Directions.Right;
+                else if (deltaX == deltaY)
+                    MoveDirection = Directions.RightDown;
+                else
+                    MoveDirection = Directions.Down;
+            }
 
             if (Position.X < playerPosition.X && Position.Y >= playerPosition.Y)
-                direction = playerPosition.X - Position.X > Position.Y - playerPosition.Y
-                    ? Directions.Right
-                    : playerPosition.X - Position.X == Position.Y - playerPosition.Y
-                        ? Directions.UpRight
-                        : Directions.Up;
+            {
+                if (deltaX > deltaY)
+                    MoveDirection = Directions.Right;
+                else if (deltaX == deltaY)
+                    MoveDirection = Directions.UpRight;
+                else
+                    MoveDirection = Directions.Up;
+            }
 
             if (Position.X >= playerPosition.X && Position.Y < playerPosition.Y)
-                direction = Position.X - playerPosition.X > playerPosition.Y - Position.Y
-                    ? Directions.Left
-                    : Position.X - playerPosition.X == playerPosition.Y - Position.Y
-                        ? Directions.DownLeft
-                        : Directions.Down;
+            {
+                if (deltaX > deltaY)
+                    MoveDirection = Directions.Left;
+                else if (deltaX == deltaY)
+                    MoveDirection = Directions.DownLeft;
+                else
+                    MoveDirection = Directions.Down;
+            }
 
             if (Position.X >= playerPosition.X && Position.Y >= playerPosition.Y)
-                direction = Position.X - playerPosition.X > Position.Y - playerPosition.Y
-                    ? Directions.Left
-                    : Position.X - playerPosition.X == Position.Y - playerPosition.Y
-                        ? Directions.LeftUp
-                        : Directions.Up;
+            {
+                if (deltaX > deltaY)
+                    MoveDirection = Directions.Left;
+                else if (deltaX == deltaY)
+                    MoveDirection = Directions.LeftUp;
+                else
+                    MoveDirection = Directions.Up;
+            }
 
             Move();
         }
