@@ -37,10 +37,5 @@ namespace SaveTheCommunism.Model
         {
             RecruitAbility--;
         }
-
-        public void Shoot(Enemy enemy)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

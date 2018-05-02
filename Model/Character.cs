@@ -51,6 +51,6 @@ namespace SaveTheCommunism.Model
 
         private void TakeDamage(int damage) => Health -= damage;
 
-        public void Move(Directions direction) => Position += Speed * Movements[direction];
+        public void Move() => Position += Speed * Movements[MoveDirection];
     }
 }

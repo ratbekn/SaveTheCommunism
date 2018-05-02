@@ -7,7 +7,7 @@ namespace SaveTheCommunism.Tests
     internal class TestCharacter : Character
     {
         public TestCharacter(int health, int damage, Vector position, Vector speed)
-            : base(health, damage, position, speed)
+            : base(health, damage, position, speed, Directions.Up)
         {
         }
     }
@@ -20,7 +20,9 @@ namespace SaveTheCommunism.Tests
         {
             var character1 = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
             var character2 = new TestCharacter(10, 3, new Vector(10, 15), new Vector(1, 2));
+
             character1.Hit(character2);
+
             Assert.AreEqual(8, character2.Health);
         }
 
@@ -29,7 +31,9 @@ namespace SaveTheCommunism.Tests
         {
             var character1 = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
             var character2 = new TestCharacter(2, 3, new Vector(10, 15), new Vector(1, 2));
+
             character1.Hit(character2);
+
             Assert.AreEqual(0, character2.Health);
             Assert.IsFalse(character2.IsAlive);
         }
@@ -38,7 +42,10 @@ namespace SaveTheCommunism.Tests
         public void TestNoMove()
         {
             var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
-            character.Move(Directions.None);
+
+            character.MoveDirection = Directions.None;
+            character.Move();
+
             Assert.AreEqual(character.Position.X, 10);
             Assert.AreEqual(character.Position.Y, 10);
         }
@@ -47,7 +54,10 @@ namespace SaveTheCommunism.Tests
         public void TestSimpleMove()
         {
             var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
-            character.Move(Directions.Left);
+
+            character.MoveDirection = Directions.Left;
+            character.Move();
+
             Assert.AreEqual(character.Position.X, 9);
             Assert.AreEqual(character.Position.Y, 10);           
         }
@@ -56,10 +66,17 @@ namespace SaveTheCommunism.Tests
         public void TestSeveralMoves()
         {
             var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 1));
+
+            character.MoveDirection = Directions.Right;
             for (var i = 0; i < 4; i++)
-                character.Move(Directions.Right);
-            character.Move(Directions.DownLeft);
-            character.Move(Directions.Down);
+                character.Move();
+
+            character.MoveDirection = Directions.DownLeft;
+            character.Move();
+
+            character.MoveDirection = Directions.Down;
+            character.Move();
+
             Assert.AreEqual(character.Position.X, 13);
             Assert.AreEqual(character.Position.Y, 12);
         }

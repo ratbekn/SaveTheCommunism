@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
+using SaveTheCommunism.Model;
 
 namespace SaveTheCommunism.View
 {
     class Square : Form
     {
+        private World World { get; set; }
+
         public Square()
         {
             ForeColor = Color.White;
             WindowState = FormWindowState.Maximized;
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Tile;
+
+            World = new World(ClientSize);
         }
 
         private void DrawStatisticsBar(Graphics graphics)
@@ -55,6 +60,35 @@ namespace SaveTheCommunism.View
         {
             base.OnResize(e);
             Invalidate();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            var moveDirection = Directions.None;
+            var downedKey = e.KeyCode;
+
+            switch (downedKey)
+            {
+                case Keys.W:
+                    moveDirection = Directions.Up;
+                    break;
+                case Keys.D:
+                    moveDirection = Directions.Right;
+                    break;
+                case Keys.S:
+                    moveDirection = Directions.Down;
+                    break;
+                case Keys.A:
+                    moveDirection = Directions.Left;
+                    break;
+            }
+            World.Player.MoveDirection = moveDirection;
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
         }
     }
 }
