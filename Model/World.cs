@@ -6,13 +6,13 @@ using System.Drawing;
 
 namespace SaveTheCommunism.Model
 {
-    class World
+    internal class World
     {
         public Size WorldSize { get; set; }
         private const int DefaultHealth = 5;
         private const int DefaultDamage = 2;
         private const int DefaultSpeed = 3;
-        private const int DefaultNumberOfEnemies = 1;
+        private const int DefaultNumberOfEnemies = 5;
         private const Directions DefaultDirection = Directions.Up;
 
         private const int DefaultPlayerHealth = 100;
@@ -21,23 +21,28 @@ namespace SaveTheCommunism.Model
         private const Directions DefaultPlayerDirection = Directions.Up;
 
         public Player Player { get; set; }
-        private Dictionary<int, Enemy> enemies;
-        private Dictionary<int, Supporter> supporters;
+        private readonly Dictionary<int, Enemy> enemies;
+        private readonly Dictionary<int, Supporter> supporters;
 
-        public IEnumerable<Enemy> Enemies { get => enemies.Values; set { } }
-        public IEnumerable<Supporter> Supporters { get => supporters.Values; set { } }
+        public IEnumerable<Enemy> Enemies => enemies.Values;
+        public IEnumerable<Supporter> Supporters => supporters.Values;
 
         public int Ammo { get; set; }
         public int Score { get; set; }
 
         private static World instance;
 
-        public static World GetInstance(Size worldSize) => instance ?? new World(worldSize);
+        public static World GetInstance(Size worldSize)
+        {
+            instance = instance ?? new World(worldSize);
+            return instance;
+        }
 
         private World(Size worldSize)
         {
             WorldSize = worldSize;
-            Player = new Player(DefaultPlayerHealth, DefaultPlayerDamage, WorldSize.Width / 2, WorldSize.Height / 2, DefaultPlayerSpeed, DefaultPlayerDirection);
+            Player = new Player(DefaultPlayerHealth, DefaultPlayerDamage, WorldSize.Width / 2,
+                WorldSize.Height / 2, DefaultPlayerSpeed, DefaultPlayerDirection);
             supporters = new Dictionary<int, Supporter>();
             enemies = new Dictionary<int, Enemy>();
             for (var i = 0; i < DefaultNumberOfEnemies; i++)
@@ -46,7 +51,11 @@ namespace SaveTheCommunism.Model
 
         public void CreateEnemy()
         {
-            var enemy = new Enemy(DefaultHealth, DefaultDamage, GetRandomCharacterPosition(), DefaultSpeed, DefaultDirection);
+            var enemiesPositions = new HashSet<Vector>(enemies.Values.Select(enem => enem.Position));
+            var currentPosition = GetRandomCharacterPosition();
+            while (enemiesPositions.Contains(currentPosition))
+                currentPosition = GetRandomCharacterPosition();
+            var enemy = new Enemy(DefaultHealth, DefaultDamage, currentPosition, DefaultSpeed, DefaultDirection);
             enemies.Add(enemy.GetHashCode(), enemy);
         }
 

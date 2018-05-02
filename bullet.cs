@@ -4,52 +4,52 @@ using System.Windows.Forms;
 
 namespace SaveTheCommunism
 {
-    class bullet
+    class Bullet
     {
-        public string direction;
-        public int speed = 20;
-        PictureBox Bullet = new PictureBox();
-        Timer tm = new Timer();
+        public string Direction;
+        public int Speed = 20;
+        PictureBox bullet = new PictureBox();
+        Timer timer = new Timer();
 
-        public int bulletLeft;
-        public int bulletTop;
+        public int BulletLeft;
+        public int BulletTop;
 
         public void mkBullet(Form form)
         {
-            Bullet.BackColor = Color.White;
-            Bullet.Size = new Size(5, 5);
-            Bullet.Tag = "bullet";
-            Bullet.Left = bulletLeft;
-            Bullet.Top = bulletTop;
-            Bullet.BringToFront();
-            form.Controls.Add(Bullet);
+            bullet.BackColor = Color.White;
+            bullet.Size = new Size(5, 5);
+            bullet.Tag = "bullet";
+            bullet.Left = BulletLeft;
+            bullet.Top = BulletTop;
+            bullet.BringToFront();
+            form.Controls.Add(bullet);
 
-            tm.Interval = speed;
-            tm.Tick += new EventHandler(tm_Tick);
-            tm.Start();
+            timer.Interval = Speed;
+            timer.Tick += new EventHandler(tm_Tick);
+            timer.Start();
         }
 
         public void tm_Tick(object sender, EventArgs e)
         {
-            if (direction == "left")
-                Bullet.Left -= speed;
+            if (Direction == "left")
+                bullet.Left -= Speed;
 
-            if (direction == "right")
-                Bullet.Left += speed;
+            if (Direction == "right")
+                bullet.Left += Speed;
 
-            if (direction == "up")
-                Bullet.Top -= speed;
+            if (Direction == "up")
+                bullet.Top -= Speed;
 
-            if (direction == "down")
-                Bullet.Top += speed;
+            if (Direction == "down")
+                bullet.Top += Speed;
 
-            if (Bullet.Left < 16 || Bullet.Left > 860 || Bullet.Top < 10 || Bullet.Top > 616)
+            if (bullet.Left < 16 || bullet.Left > 860 || bullet.Top < 10 || bullet.Top > 616)
             {
-                tm.Stop();
-                tm.Dispose();
-                Bullet.Dispose();
-                tm = null;
-                Bullet = null;
+                timer.Stop();
+                timer.Dispose();
+                bullet.Dispose();
+                timer = null;
+                bullet = null;
             }
         }
     }

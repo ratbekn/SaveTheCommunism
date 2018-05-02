@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using SaveTheCommunism.Model;
+using System;
 using System.Diagnostics;
-using SaveTheCommunism.Model;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SaveTheCommunism.View
 {
-    class Square : Form
+    internal class Square : Form
     {
         private Timer timer;
 
@@ -45,7 +42,7 @@ namespace SaveTheCommunism.View
 
             graphics.DrawString("Score: " + World.Score, Font, brush, width / 2, 0, stringFormat);
 
-            graphics.DrawString("Health: " + Player.Health, Font, brush, (width / 6) * 5, 0, stringFormat);
+            graphics.DrawString("Health: " + Player.Health, Font, brush, width / 6 * 5, 0, stringFormat);
         }
 
         private void DrawEnemies(Graphics graphics)
@@ -54,6 +51,7 @@ namespace SaveTheCommunism.View
             foreach (var enemy in enemies)
                 graphics.DrawImage(Properties.Resources.enemy_stand_up, enemy.Position.ToPoint());
         }
+
         private void DrawPlayer(Graphics graphics)
         {
             graphics.DrawImage(Properties.Resources.player_move_gun_up, Player.Position.ToPoint());
@@ -90,26 +88,57 @@ namespace SaveTheCommunism.View
             Invalidate();
         }
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            var downedKey = e.KeyCode;
             Debug.WriteLine(Player.Position.ToString());
-            if (downedKey == Keys.W)
-                Player.MoveDirection = Directions.Up;
-            if (downedKey == Keys.D)
-                Player.MoveDirection = Directions.RightDown;
-            if (downedKey == Keys.S)
-                Player.MoveDirection = Directions.Down;
-            if (downedKey == Keys.A)
-                Player.MoveDirection = Directions.Left;
+
+            if (Keyboard.IsKeyDown(Key.W))
+            {
+                if (Keyboard.IsKeyDown(Key.A))
+                    Player.MoveDirection = Directions.LeftUp;
+                else if (Keyboard.IsKeyDown(Key.D))
+                    Player.MoveDirection = Directions.UpRight;
+                else
+                    Player.MoveDirection = Directions.Up;
+            }
+
+            if (Keyboard.IsKeyDown(Key.D))
+            {
+                if (Keyboard.IsKeyDown(Key.W))
+                    Player.MoveDirection = Directions.UpRight;
+                else if (Keyboard.IsKeyDown(Key.S))
+                    Player.MoveDirection = Directions.RightDown;
+                else
+                    Player.MoveDirection = Directions.Right;
+            }
+
+            if (Keyboard.IsKeyDown(Key.S))
+            {
+                if (Keyboard.IsKeyDown(Key.A))
+                    Player.MoveDirection = Directions.DownLeft;
+                else if (Keyboard.IsKeyDown(Key.D))
+                    Player.MoveDirection = Directions.RightDown;
+                else
+                    Player.MoveDirection = Directions.Down;
+            }
+
+            if (Keyboard.IsKeyDown(Key.A))
+            {
+                if (Keyboard.IsKeyDown(Key.W))
+                    Player.MoveDirection = Directions.LeftUp;
+                else if (Keyboard.IsKeyDown(Key.S))
+                    Player.MoveDirection = Directions.DownLeft;
+                else
+                    Player.MoveDirection = Directions.Left;
+            }
+
             Debug.WriteLine(Player.Position.ToString());
         }
 
-        protected override void OnKeyUp(KeyEventArgs e)
+        protected override void OnKeyUp(System.Windows.Forms.KeyEventArgs e)
         {
             base.OnKeyUp(e);
-
             var uppedKey = e.KeyCode;
 
             switch (uppedKey)

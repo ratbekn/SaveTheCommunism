@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SaveTheCommunism.Utilities;
+﻿using SaveTheCommunism.Utilities;
 
 namespace SaveTheCommunism.Model
 {
-    class Supporter : Character
+    internal class Supporter : Character
     {
         public Supporter(int health, int damage, Vector position, int speed, Directions initialMoveDirection) 
             : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)

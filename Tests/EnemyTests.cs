@@ -13,6 +13,7 @@ namespace SaveTheCommunism.Tests
             var enemy = new Enemy(10, 2, new Vector(8, 10), 1, Directions.Up);
             var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
+
             Assert.AreEqual(9, enemy.Position.X);
             Assert.AreEqual(10, enemy.Position.Y);
         }
@@ -23,6 +24,7 @@ namespace SaveTheCommunism.Tests
             var enemy = new Enemy(10, 2, new Vector(12, 10), 1, Directions.Up);
             var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
+
             Assert.AreEqual(11, enemy.Position.X);
             Assert.AreEqual(10, enemy.Position.Y);
         }
@@ -33,6 +35,7 @@ namespace SaveTheCommunism.Tests
             var enemy = new Enemy(10, 2, new Vector(10, 12), 1, Directions.Up);
             var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
+
             Assert.AreEqual(10, enemy.Position.X);
             Assert.AreEqual(11, enemy.Position.Y);
         }
@@ -43,6 +46,7 @@ namespace SaveTheCommunism.Tests
             var enemy = new Enemy(10, 2, new Vector(10, 8), 1, Directions.Up);
             var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
+
             Assert.AreEqual(10, enemy.Position.X);
             Assert.AreEqual(9, enemy.Position.Y);
         }

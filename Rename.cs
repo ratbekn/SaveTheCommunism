@@ -286,11 +286,11 @@ namespace SaveTheCommunism
 
         private void Shoot(string direct)
         {
-            bullet shoot = new bullet
+            Bullet shoot = new Bullet
             {
-                direction = direct,
-                bulletLeft = player.Left + (player.Width / 2),
-                bulletTop = player.Top + (player.Height / 2)
+                Direction = direct,
+                BulletLeft = player.Left + (player.Width / 2),
+                BulletTop = player.Top + (player.Height / 2)
             };
             if (direct == "up")
                 player.Image = Properties.Resources.player_gun_up;

@@ -1,7 +1,5 @@
-using System;
-using System.Drawing;
 using SaveTheCommunism.Utilities;
-using System.Collections.Generic;
+using System;
 
 namespace SaveTheCommunism.Model
 {
@@ -15,7 +13,6 @@ namespace SaveTheCommunism.Model
         public Enemy(int health, int damage, int x, int y, int speed, Directions initialMoveDirection)
             : base(health, damage, new Vector(x, y), new Vector(speed, speed), initialMoveDirection)
         {
-
         }
 
         public void Move(Vector playerPosition)

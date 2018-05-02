@@ -20,7 +20,6 @@ namespace SaveTheCommunism.Tests
         {
             var character1 = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
             var character2 = new TestCharacter(10, 3, new Vector(10, 15), new Vector(1, 2));
-
             character1.Hit(character2);
 
             Assert.AreEqual(8, character2.Health);
@@ -31,7 +30,6 @@ namespace SaveTheCommunism.Tests
         {
             var character1 = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
             var character2 = new TestCharacter(2, 3, new Vector(10, 15), new Vector(1, 2));
-
             character1.Hit(character2);
 
             Assert.AreEqual(0, character2.Health);
@@ -41,9 +39,7 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestNoMove()
         {
-            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
-
-            character.MoveDirection = Directions.None;
+            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2)) { MoveDirection = Directions.None };
             character.Move();
 
             Assert.AreEqual(character.Position.X, 10);
@@ -53,9 +49,7 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSimpleMove()
         {
-            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2));
-
-            character.MoveDirection = Directions.Left;
+            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 2)) { MoveDirection = Directions.Left };
             character.Move();
 
             Assert.AreEqual(character.Position.X, 9);
@@ -65,9 +59,7 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSeveralMoves()
         {
-            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 1));
-
-            character.MoveDirection = Directions.Right;
+            var character = new TestCharacter(10, 2, new Vector(10, 10), new Vector(1, 1)) { MoveDirection = Directions.Right };
             for (var i = 0; i < 4; i++)
                 character.Move();
 
