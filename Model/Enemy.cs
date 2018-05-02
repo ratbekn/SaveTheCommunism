@@ -50,7 +50,7 @@ namespace SaveTheCommunism.Model
                         ? Directions.LeftUp
                         : Directions.Up;
 
-            Move(direction);
+            Move();
         }
     }
 }

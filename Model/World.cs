@@ -43,11 +43,11 @@ namespace SaveTheCommunism.Model
 
         public void CreateEnemy()
         {
-            var enemy = new Enemy(DefaultHealth, DefaultDamage, GetRandomEnemyPosition(), DefaultSpeed, DefaultDirection);
+            var enemy = new Enemy(DefaultHealth, DefaultDamage, GetRandomCharacterPosition(), DefaultSpeed, DefaultDirection);
             enemies.Add(enemy.GetHashCode(), enemy);
         }
 
-        private Vector GetRandomEnemyPosition()
+        private Vector GetRandomCharacterPosition()
         {
             var random = new Random();
             return new Vector(random.Next(WorldSize.Width), random.Next(WorldSize.Height));
@@ -55,14 +55,18 @@ namespace SaveTheCommunism.Model
 
         public void CreateSupporter()
         {
-            //добавить аргументы после реализации Supporter
-            var supporter = new Supporter();
+            var supporter = new Supporter(DefaultHealth, DefaultDamage, GetRandomCharacterPosition(), DefaultSpeed, DefaultDirection);
             supporters.Add(supporter.GetHashCode(), supporter);
         }
 
-        public void RemoveEnemy(Enemy enemy) => enemies.Remove(enemy.GetHashCode());
+        public void RemoveCharacter(Character character)
+        {
+            if (character is Enemy enemy)
+                enemies.Remove(enemy.GetHashCode());
 
-        public void RemoveSupporter(Supporter supporter) => supporters.Remove(supporter.GetHashCode());
+            if (character is Supporter supporter)
+                supporters.Remove(supporter.GetHashCode());
+        }
 
         public void Update()
         {
