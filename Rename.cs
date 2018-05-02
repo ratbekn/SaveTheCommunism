@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SaveTheCommunism
 {
-    public class Square : Form
+    public class Rename : Form
     {
         private Label label1;
         private Label label2;
@@ -17,18 +18,19 @@ namespace SaveTheCommunism
         private Timer timer1;
         private System.ComponentModel.IContainer components;
         private ProgressBar progressBar1;
-
+        
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             DoubleBuffered = true;
-            Text = "Use W,A,S,D keys to control player and Space for shoot";
-            WindowState = FormWindowState.Maximized;
+            Text = "Save The Communism";
         }
 
-        public Square()
+        public Rename()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            //FormBorderStyle = FormBorderStyle.None;
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Tile;
         }
@@ -165,7 +167,6 @@ namespace SaveTheCommunism
             // 
             // Square
             // 
-            this.ClientSize = new System.Drawing.Size(857, 523);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -274,8 +275,8 @@ namespace SaveTheCommunism
                 BackColor = Color.Transparent,
                 Image = Properties.Resources.ammo,
                 SizeMode = PictureBoxSizeMode.AutoSize,
-                Left = rnd.Next(10, 890),
-                Top = rnd.Next(50, 600),
+                Left = rnd.Next(10, Width),
+                Top = rnd.Next(50, Height),
                 Tag = "ammo"
             };
             this.Controls.Add(ammo);
@@ -309,8 +310,8 @@ namespace SaveTheCommunism
                 BackColor = Color.Transparent,
                 Tag = "enemy",
                 Image = Properties.Resources.enemy_stand_down,
-                Left = rnd.Next(0, 900),
-                Top = rnd.Next(0, 800),
+                Left = rnd.Next(0, Width),
+                Top = rnd.Next(0, Height),
                 SizeMode = PictureBoxSizeMode.AutoSize
             };
             this.Controls.Add(enemy);
@@ -319,6 +320,7 @@ namespace SaveTheCommunism
 
         private void gameEngine(object sender, EventArgs e)
         {
+            Debug.WriteLine("Width: " + Width, "Height: " + Height);
             if (playerHealth > 1)
             {
                 progressBar1.Value = Convert.ToInt32(playerHealth);
@@ -336,13 +338,13 @@ namespace SaveTheCommunism
             if (goleft && player.Left > 0)
                 player.Left -= speed;
 
-            if (goright && player.Left + player.Width < 930)
+            if (goright && player.Left + player.Width < Width)
                 player.Left += speed;
 
-            if (goup && player.Top > 60)
+            if (goup && player.Top > 0)
                 player.Top -= speed;
 
-            if (godown && player.Top + player.Height < 700)
+            if (godown && player.Top + player.Height < Height)
                 player.Top += speed;
 
             foreach (Control x in this.Controls)
@@ -360,8 +362,8 @@ namespace SaveTheCommunism
 
                 if (x is PictureBox && x.Tag != null && x.Tag.Equals("bullet"))
                 {
-                    if (((PictureBox)x).Left < 1 || ((PictureBox)x).Left > 930 ||
-                        ((PictureBox)x).Top < 10 || ((PictureBox)x).Top > 700)
+                    if (((PictureBox)x).Left < 1 || ((PictureBox)x).Left > Width ||
+                        ((PictureBox)x).Top < 10 || ((PictureBox)x).Top > Height)
                     {
                         this.Controls.Remove(((PictureBox)x));
                         ((PictureBox)x).Dispose();
