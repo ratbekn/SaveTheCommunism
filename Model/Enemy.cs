@@ -7,8 +7,8 @@ namespace SaveTheCommunism.Model
 {
     public class Enemy : Character
     {
-        public Enemy(int health, int damage, Vector position, Vector speed)
-            : base(health, damage, position, speed)
+        public Enemy(int health, int damage, Vector position, Vector speed, Directions initalDirection)
+            : base(health, damage, position, speed, initalDirection)
         {
         }
 
