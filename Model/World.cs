@@ -28,11 +28,8 @@ namespace SaveTheCommunism.Model
         public int Score { get; set; }
 
         private static World instance;
-        public static World GetInstance(Size worldSize)
-        {
-            instance = instance ?? new World(worldSize);
-            return instance;
-        }
+
+        public static World GetInstance(Size worldSize) => instance ?? new World(worldSize);
 
         private World(Size worldSize)
         {

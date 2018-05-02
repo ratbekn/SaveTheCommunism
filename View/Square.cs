@@ -13,6 +13,7 @@ namespace SaveTheCommunism.View
     class Square : Form
     {
         private World World { get; set; }
+        private Player Player { get; set; }
 
         public Square()
         {
@@ -21,7 +22,8 @@ namespace SaveTheCommunism.View
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Tile;
 
-            World = new World(ClientSize);
+            World = World.GetInstance(ClientSize);
+            Player = World.Player;
         }
 
         private void DrawStatisticsBar(Graphics graphics)
@@ -35,11 +37,11 @@ namespace SaveTheCommunism.View
             var width = ClientSize.Width;
             var height = ClientSize.Height;
 
-            graphics.DrawString("Ammo: ", Font, brush, width / 6, 0, stringFormat);
+            graphics.DrawString("Ammo: " + World.Ammo, Font, brush, width / 6, 0, stringFormat);
 
-            graphics.DrawString("Score: ", Font, brush, width / 2, 0, stringFormat);
+            graphics.DrawString("Score: " + World.Score, Font, brush, width / 2, 0, stringFormat);
 
-            graphics.DrawString("Health: ", Font, brush, (width / 6) * 5, 0, stringFormat);
+            graphics.DrawString("Health: " + Player.Health, Font, brush, (width / 6) * 5, 0, stringFormat);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -83,7 +85,7 @@ namespace SaveTheCommunism.View
                     moveDirection = Directions.Left;
                     break;
             }
-            World.Player.MoveDirection = moveDirection;
+            Player.MoveDirection = moveDirection;
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
