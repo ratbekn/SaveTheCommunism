@@ -8,7 +8,5 @@ namespace SaveTheCommunism.Model
 {
     class World
     {
-        public Player Player { get; set; }
-
     }
 }
