@@ -10,8 +10,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSimpleMoveRight()
         {
-            var enemy = new Enemy(10, 2, new Vector(8, 10), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(8, 10), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
             Assert.AreEqual(9, enemy.Position.X);
             Assert.AreEqual(10, enemy.Position.Y);
@@ -20,8 +20,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSimpleMoveLeft()
         {
-            var enemy = new Enemy(10, 2, new Vector(12, 10), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(12, 10), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
             Assert.AreEqual(11, enemy.Position.X);
             Assert.AreEqual(10, enemy.Position.Y);
@@ -30,8 +30,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSimpleMoveUp()
         {
-            var enemy = new Enemy(10, 2, new Vector(10, 12), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(10, 12), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
             Assert.AreEqual(10, enemy.Position.X);
             Assert.AreEqual(11, enemy.Position.Y);
@@ -40,8 +40,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSimpleMoveDown()
         {
-            var enemy = new Enemy(10, 2, new Vector(10, 8), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(10, 8), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
             enemy.Move(player.Position);
             Assert.AreEqual(10, enemy.Position.X);
             Assert.AreEqual(9, enemy.Position.Y);
@@ -50,8 +50,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestDiagonalMoves()
         {
-            var enemy = new Enemy(10, 2, new Vector(7, 6), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(7, 6), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
 
             enemy.Move(player.Position);
             Assert.AreEqual(7, enemy.Position.X);
@@ -69,8 +69,8 @@ namespace SaveTheCommunism.Tests
         [Test]
         public void TestSeveralMoves()
         {
-            var enemy = new Enemy(10, 2, new Vector(34, 56), new Vector(1, 1));
-            var player = new Player(10, 2, new Vector(10, 10), new Vector(1, 1));
+            var enemy = new Enemy(10, 2, new Vector(34, 56), 1, Directions.Up);
+            var player = new Player(10, 2, new Vector(10, 10), 1, Directions.Up);
 
             enemy.Move(player.Position);
             Assert.AreEqual(34, enemy.Position.X);
