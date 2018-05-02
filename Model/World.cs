@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SaveTheCommunism.Utilities;
 using System.Drawing;
 
@@ -11,48 +9,45 @@ namespace SaveTheCommunism.Model
     class World
     {
         public Size WorldSize { get; set; }
-        private int defaultHealth;
-        private int defaultDamage;
-        private int defaultSpeed;
-        private int defaultNumberOfEnemies;
-        private Directions defaultDirection;
+        private const int DefaultHealth = 10;
+        private const int DefaultDamage = 2;
+        private const int DefaultSpeed = 1;
+        private const int DefaultNumberOfEnemies = 5;
+        private const Directions DefaultDirection = Directions.None;
+
+        private const int DefaultPlayerHealth = 10;
+        private const int DefaultPlayerDamage = 2;
+        private const int DefaultPlayerSpeed = 2;
+        private const Directions DefaultPlayerDirection = Directions.None;
 
         public Player Player { get; set; }
         private Dictionary<int, Enemy> enemies;
         private Dictionary<int, Supporter> supporters;
 
         private static World instance;
-        public static World GetInstance(Size worldSize, int health, int damage, int speed, Directions direction, int numberOfEnemies)
+        public static World GetInstance(Size worldSize)
         {
-            instance = instance ?? new World(worldSize, health, damage, speed, direction, numberOfEnemies);
+            instance = instance ?? new World(worldSize);
             return instance;
         }
 
-
-        private World(Size worldSize, int health, int damage, int speed, Directions direction, int numberOfEnemies)
+        private World(Size worldSize)
         {
             WorldSize = worldSize;
-            defaultHealth = health;
-            defaultDamage = damage;
-            defaultSpeed = speed;
-            defaultDirection = direction;
-            defaultNumberOfEnemies = numberOfEnemies;
-
-            Player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, defaultDirection);
+            Player = new Player(DefaultPlayerHealth, DefaultPlayerDamage, WorldSize.Width / 2, WorldSize.Height / 2, DefaultPlayerSpeed, DefaultPlayerDirection);
             supporters = new Dictionary<int, Supporter>();
             enemies = new Dictionary<int, Enemy>();
-            for (var i = 0; i < defaultNumberOfEnemies; i++)
+            for (var i = 0; i < DefaultNumberOfEnemies; i++)
                 CreateEnemy();
-
         }
 
         public void CreateEnemy()
         {
-            var enemy = new Enemy(defaultHealth, defaultDamage, GetRandomEnemyPosition(), defaultSpeed, defaultDirection);
+            var enemy = new Enemy(DefaultHealth, DefaultDamage, GetRandomEnemyPosition(), DefaultSpeed, DefaultDirection);
             enemies.Add(enemy.GetHashCode(), enemy);
         }
 
-        public Vector GetRandomEnemyPosition()
+        private Vector GetRandomEnemyPosition()
         {
             var random = new Random();
             return new Vector(random.Next(WorldSize.Width), random.Next(WorldSize.Height));
@@ -65,15 +60,9 @@ namespace SaveTheCommunism.Model
             supporters.Add(supporter.GetHashCode(), supporter);
         }
 
-        public void RemoveEnemy(Enemy enemy)
-        {
-            enemies.Remove(enemy.GetHashCode());
-        }
+        public void RemoveEnemy(Enemy enemy) => enemies.Remove(enemy.GetHashCode());
 
-        public void RemoveSupporter(Supporter supporter)
-        {
-            supporters.Remove(supporter.GetHashCode());
-        }
+        public void RemoveSupporter(Supporter supporter) => supporters.Remove(supporter.GetHashCode());
 
         public void Update()
         {
