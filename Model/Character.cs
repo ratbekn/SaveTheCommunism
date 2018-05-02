@@ -34,27 +34,22 @@ namespace SaveTheCommunism.Model
         public int Health { get; set; }
         public int Damage { get; set; }
         public Vector Position { get; set; }
-        public Vector Direction { get; set; }
+        public Directions Direction { get; set; }
         public Vector Speed { get; set; }
         public bool IsAlive => Health > 0;
 
-        protected Character(int health, int damage, Vector position, Vector speed)
+        protected Character(int health, int damage, Vector position, Vector speed, Directions initialDirection)
         {
             Health = health;
             Damage = damage;
             Position = position;
             Speed = speed;
+            Direction = initialDirection;
         }
 
-        public virtual void Hit(Character another)
-        {
-            another.TakeDamage(Damage);
-        }
+        public virtual void Hit(Character another) => another.TakeDamage(Damage);
 
-        private void TakeDamage(int damage)
-        {
-            Health -= damage;
-        }
+        private void TakeDamage(int damage) => Health -= damage;
 
         public void Move(Directions direction) => Position += Speed * Movements[direction];
     }

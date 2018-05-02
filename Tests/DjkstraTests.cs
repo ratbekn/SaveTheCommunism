@@ -9,14 +9,14 @@ namespace SaveTheCommunism.Tests
     public class DjkstraTests
     {
         [Test]
-        public void TestWithNoEnemy()
+        public void TestWithNoPoints()
         {
             var path = Dijkstra.GetPathToNearestPoint(new Vector(10, 10), new List<Point>(), new Size(30, 30));
             Assert.Zero(path.Count);
         }
 
         [Test]
-        public void TestWithOneEnemy()
+        public void TestWithOnePoint()
         {
             var points = new List<Point> { new Point(8, 10) };
             var path = Dijkstra.GetPathToNearestPoint(new Vector(10, 10), points, new Size(30, 30));
@@ -26,7 +26,7 @@ namespace SaveTheCommunism.Tests
         }
 
         [Test]
-        public void TestWithTwoEnemies()
+        public void TestWithTwoPoints()
         {
             var points = new List<Point> { new Point(10, 9), new Point(8, 10) };
             var path = Dijkstra.GetPathToNearestPoint(new Vector(10, 10), points, new Size(30, 30));
