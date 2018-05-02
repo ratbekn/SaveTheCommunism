@@ -11,30 +11,39 @@ namespace SaveTheCommunism.Model
     class World
     {
         public Size WorldSize { get; set; }
-        public Player player { get; set; }
+        private int defaultHealth;
+        private int defaultDamage;
+        private int defaultSpeed;
+        private int defaultNumberOfEnemies;
+        private Directions defaultDirection;
 
-        //TEMP VALUES
-        //FIX
-        private int defaultHealth = 10;
-        private int defaultDamage = 2;
-        private int defaultSpeed = 3;
-        private int defaultNumberOfEnemies = 5;
-        private Directions defaultDirection = Directions.None;
-        
+        public Player Player { get; set; }
         private Dictionary<int, Enemy> enemies;
         private Dictionary<int, Supporter> supporters;
 
+        private static World instance;
+        public static World GetInstance(Size worldSize, int health, int damage, int speed, Directions direction, int numberOfEnemies)
+        {
+            instance = instance ?? new World(worldSize, health, damage, speed, direction, numberOfEnemies);
+            return instance;
+        }
 
-        public World(Size worldSize)
+
+        private World(Size worldSize, int health, int damage, int speed, Directions direction, int numberOfEnemies)
         {
             WorldSize = worldSize;
-            player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, Directions.Up);
-            enemies = new Dictionary<int, Enemy>();
+            defaultHealth = health;
+            defaultDamage = damage;
+            defaultSpeed = speed;
+            defaultDirection = direction;
+            defaultNumberOfEnemies = numberOfEnemies;
 
+            player = new Player(defaultHealth, defaultDamage, WorldSize.Width / 2, WorldSize.Height / 2, defaultSpeed, defaultDirection);
+            supporters = new Dictionary<int, Supporter>();
+            enemies = new Dictionary<int, Enemy>();
             for (var i = 0; i < defaultNumberOfEnemies; i++)
                 CreateEnemy();
 
-            supporters = new Dictionary<int, Supporter>();
         }
 
         public void CreateEnemy()
@@ -47,6 +56,23 @@ namespace SaveTheCommunism.Model
         {
             var random = new Random();
             return new Vector(random.Next(WorldSize.Width), random.Next(WorldSize.Height));
+        }
+
+        public void CreateSupporter()
+        {
+            //добавить аргументы после реализации Supporter
+            var supporter = new Supporter();
+            supporters.Add(supporter.GetHashCode(), supporter);
+        }
+
+        public void RemoveEnemy(Enemy enemy)
+        {
+            enemies.Remove(enemy.GetHashCode());
+        }
+
+        public void RemoveSupporter(Supporter supporter)
+        {
+            supporters.Remove(supporter.GetHashCode());
         }
 
         public void Update()
