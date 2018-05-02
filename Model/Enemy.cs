@@ -12,12 +12,6 @@ namespace SaveTheCommunism.Model
         {
         }
 
-        public static Vector GetRandomEnemyPosition(Size squareSize)
-        {
-            var random = new Random();
-            return new Vector(random.Next(squareSize.Width), random.Next(squareSize.Height));
-        }
-
         public void Move(Vector playerPosition)
         {
             var direction = Directions.None;
