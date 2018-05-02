@@ -37,12 +37,13 @@ namespace SaveTheCommunism.View
             var brush = new SolidBrush(ForeColor);
             var width = ClientSize.Width;
             var height = ClientSize.Height;
+            var drawFont = new Font("Arial", 16);
 
-            graphics.DrawString("Ammo: " + World.Ammo, Font, brush, width / 6, 0, stringFormat);
+            graphics.DrawString("Ammo: " + World.Ammo, drawFont, brush, width / 6, 0, stringFormat);
 
-            graphics.DrawString("Score: " + World.Score, Font, brush, width / 2, 0, stringFormat);
+            graphics.DrawString("Score: " + World.Score, drawFont, brush, width / 2, 0, stringFormat);
 
-            graphics.DrawString("Health: " + Player.Health, Font, brush, width / 6 * 5, 0, stringFormat);
+            graphics.DrawString("Health: " + Player.Health, drawFont, brush, (width / 6) * 5, 0, stringFormat);
         }
 
         private void DrawEnemies(Graphics graphics)
