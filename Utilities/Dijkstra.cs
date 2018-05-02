@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SaveTheCommunism.Model;
 using System.Drawing;
 
 namespace SaveTheCommunism.Utilities
 {
-    class Dijkstra
+    internal class Dijkstra
     {
-        public List<Point> GetPathToNearestEnemy(Vector position, List<Enemy> enemies, Size squareSize)
+        public static List<Point> GetPathToNearestPoint(Vector position, List<Point> points, Size squareSize)
         {
             var currentPosition = position.ToPoint();
-            var enemiesPositions = enemies
-                .Select(enemy => enemy.Position.ToPoint())
-                .ToList();
-            var pathToNextEnemy = GetPathToNearestEnemy(currentPosition, enemiesPositions, squareSize);
-            return pathToNextEnemy ?? new List<Point>();
+            var currentPoints = points.ToList();
+            var pathToNearestPoint = GetPathToNearestPoint(currentPosition, currentPoints, squareSize);
+            return pathToNearestPoint ?? new List<Point>();
         }
 
-        private static List<Point> GetPathToNearestEnemy(Point initialPosition, List<Point> enemiesPositions, Size squareSize)
+        private static List<Point> GetPathToNearestPoint(Point initialPosition, List<Point> points, Size squareSize)
         {
             var visited = new Dictionary<Point, DijkstraData>();
             var track = new Dictionary<Point, DijkstraData>
@@ -34,7 +28,7 @@ namespace SaveTheCommunism.Utilities
                 visited.Add(toOpen, track[toOpen]);
                 track.Remove(toOpen);
 
-                if (enemiesPositions.Contains(toOpen))
+                if (points.Contains(toOpen))
                     return BuildPath(visited, initialPosition, toOpen);
 
                 AddNextPointsToTrack(toOpen, track, visited, squareSize);
@@ -106,7 +100,7 @@ namespace SaveTheCommunism.Utilities
         }
     }
 
-    class WeightedPath
+    internal class WeightedPath
     {
         public List<Point> Path { get; }
         public int Weight { get; }
@@ -120,7 +114,7 @@ namespace SaveTheCommunism.Utilities
         }
     }
 
-    class DijkstraData
+    internal class DijkstraData
     {
         public Point Previous { get; }
         public int Weight { get; }
