@@ -5,14 +5,14 @@ namespace SaveTheCommunism.Utilities
 {
     public class Vector
     {
-        public Vector(int x, int y)
+        public Vector(double x, double y)
         {
             X = x;
             Y = y;
         }
 
-        public readonly int X;
-        public readonly int Y;
+        public readonly double X;
+        public readonly double Y;
         private double Length => Sqrt(X * X + Y * Y);
         public double Angle => Atan2(Y, X);
         public static Vector Zero = new Vector(0, 0);
@@ -45,9 +45,9 @@ namespace SaveTheCommunism.Utilities
 
         public static Vector operator -(Vector a, Vector b) => new Vector(a.X - b.X, a.Y - b.Y);
 
-        public static Vector operator *(Vector a, double k) => new Vector((int)(a.X * k), (int)(a.Y * k));
+        public static Vector operator *(Vector a, double k) => new Vector(a.X * k, a.Y * k);
 
-        public static Vector operator /(Vector a, double k) => new Vector((int)(a.X / k), (int)(a.Y / k));
+        public static Vector operator /(Vector a, double k) => new Vector(a.X / k, a.Y / k);
 
         public static Vector operator *(double k, Vector a) => a * k;
 
@@ -57,10 +57,10 @@ namespace SaveTheCommunism.Utilities
 
         public Vector Normalize() => Length > 0 ? this * (1 / Length) : this;
 
-        public Vector Rotate(double angle) => new Vector((int)(X * Cos(angle) - Y * Sin(angle)), (int)(X * Sin(angle) + Y * Cos(angle)));
+        public Vector Rotate(double angle) => new Vector(X * Cos(angle) - Y * Sin(angle), X * Sin(angle) + Y * Cos(angle));
 
         public Vector BoundTo(Size size) => new Vector(Max(0, Min(size.Width, X)), Max(0, Min(size.Height, Y)));
 
-        public Point ToPoint() => new Point(X, Y);
+        public Point ToPoint() => new Point((int)X, (int)Y);
     }
 }
