@@ -6,11 +6,11 @@ namespace SaveTheCommunism.Model
     public enum Directions
     {
         Up,
-        UpRight,
+        RightUp,
         Right,
         RightDown,
         Down,
-        DownLeft,
+        LeftDown,
         Left,
         LeftUp,
         None
@@ -21,11 +21,11 @@ namespace SaveTheCommunism.Model
         public Dictionary<Directions, Vector> Movements = new Dictionary<Directions, Vector>
         {
             { Directions.Up, new Vector (0, -1) },
-            { Directions.UpRight, new Vector(1, -1) },
+            { Directions.RightUp, new Vector(1, -1) },
             { Directions.Right, new Vector(1, 0) },
             { Directions.RightDown, new Vector(1, 1) },
             { Directions.Down, new Vector(0, 1) },
-            { Directions.DownLeft, new Vector(-1, 1) },
+            { Directions.LeftDown, new Vector(-1, 1) },
             { Directions.Left, new Vector(-1, 0) },
             { Directions.LeftUp, new Vector(-1, -1) },
             { Directions.None, new Vector(0, 0) }

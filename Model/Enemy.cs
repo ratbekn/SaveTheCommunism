@@ -35,7 +35,7 @@ namespace SaveTheCommunism.Model
                 if (deltaX > deltaY)
                     MoveDirection = Directions.Right;
                 else if (deltaX == deltaY)
-                    MoveDirection = Directions.UpRight;
+                    MoveDirection = Directions.RightUp;
                 else
                     MoveDirection = Directions.Up;
             }
@@ -45,7 +45,7 @@ namespace SaveTheCommunism.Model
                 if (deltaX > deltaY)
                     MoveDirection = Directions.Left;
                 else if (deltaX == deltaY)
-                    MoveDirection = Directions.DownLeft;
+                    MoveDirection = Directions.LeftDown;
                 else
                     MoveDirection = Directions.Down;
             }

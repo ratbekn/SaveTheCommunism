@@ -99,7 +99,7 @@ namespace SaveTheCommunism.View
                 if (Keyboard.IsKeyDown(Key.A))
                     Player.MoveDirection = Directions.LeftUp;
                 else if (Keyboard.IsKeyDown(Key.D))
-                    Player.MoveDirection = Directions.UpRight;
+                    Player.MoveDirection = Directions.RightUp;
                 else
                     Player.MoveDirection = Directions.Up;
             }
@@ -107,7 +107,7 @@ namespace SaveTheCommunism.View
             if (Keyboard.IsKeyDown(Key.D))
             {
                 if (Keyboard.IsKeyDown(Key.W))
-                    Player.MoveDirection = Directions.UpRight;
+                    Player.MoveDirection = Directions.RightUp;
                 else if (Keyboard.IsKeyDown(Key.S))
                     Player.MoveDirection = Directions.RightDown;
                 else
@@ -117,7 +117,7 @@ namespace SaveTheCommunism.View
             if (Keyboard.IsKeyDown(Key.S))
             {
                 if (Keyboard.IsKeyDown(Key.A))
-                    Player.MoveDirection = Directions.DownLeft;
+                    Player.MoveDirection = Directions.LeftDown;
                 else if (Keyboard.IsKeyDown(Key.D))
                     Player.MoveDirection = Directions.RightDown;
                 else
@@ -129,7 +129,7 @@ namespace SaveTheCommunism.View
                 if (Keyboard.IsKeyDown(Key.W))
                     Player.MoveDirection = Directions.LeftUp;
                 else if (Keyboard.IsKeyDown(Key.S))
-                    Player.MoveDirection = Directions.DownLeft;
+                    Player.MoveDirection = Directions.LeftDown;
                 else
                     Player.MoveDirection = Directions.Left;
             }

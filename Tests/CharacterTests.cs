@@ -63,7 +63,7 @@ namespace SaveTheCommunism.Tests
             for (var i = 0; i < 4; i++)
                 character.Move();
 
-            character.MoveDirection = Directions.DownLeft;
+            character.MoveDirection = Directions.LeftDown;
             character.Move();
 
             character.MoveDirection = Directions.Down;
