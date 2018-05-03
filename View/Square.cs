@@ -55,7 +55,28 @@ namespace SaveTheCommunism.View
 
         private void DrawPlayer(Graphics graphics)
         {
-            graphics.DrawImage(Properties.Resources.player_move_gun_up, Player.Position.ToPoint());
+            graphics.DrawImage(GetPlayerImage(Player.MoveDirection, Player.HasGun), Player.Position.ToPoint());
+        }
+
+        private Bitmap GetPlayerImage(Directions moveDirection, bool HasGun)
+        {
+            var playerImage = default(Bitmap);
+            switch (moveDirection)
+            {
+                case Directions.Up:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_up : Properties.Resources.player_stand_up;
+                    break;
+                case Directions.Right:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_right : Properties.Resources.player_stand_right;
+                    break;
+                case Directions.Down:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_down : Properties.Resources.player_stand_down;
+                    break;
+                case Directions.Left:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_left : Properties.Resources.player_stand_left;
+                    break;
+            }
+            return playerImage;
         }
 
         private void OnTick(object sender, EventArgs e)
@@ -134,6 +155,8 @@ namespace SaveTheCommunism.View
                     Player.MoveDirection = Directions.Left;
             }
 
+            Player.IsMoving = true;
+
             Debug.WriteLine(Player.Position.ToString());
         }
 
@@ -148,7 +171,7 @@ namespace SaveTheCommunism.View
                 case Keys.D:
                 case Keys.S:
                 case Keys.A:
-                    Player.MoveDirection = Directions.None;
+                    //Player.IsMoving = false;
                     break;
             }
         }

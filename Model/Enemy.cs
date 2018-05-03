@@ -11,7 +11,7 @@ namespace SaveTheCommunism.Model
         }
 
         public Enemy(int health, int damage, int x, int y, int speed, Directions initialMoveDirection)
-            : base(health, damage, new Vector(x, y), new Vector(speed, speed), initialMoveDirection)
+            : this(health, damage, new Vector(x, y), speed, initialMoveDirection)
         {
         }
 

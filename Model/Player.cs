@@ -5,14 +5,16 @@ namespace SaveTheCommunism.Model
     public class Player : Character
     {
         public int RecruitAbility { get; set; }
+        public bool HasGun { get; set; }
 
         public Player(int health, int damage, Vector position, int speed, Directions initialMoveDirection)
             : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)
         {
+            HasGun = false;
         }
 
         public Player(int health, int damage, int x, int y, int speed, Directions direction)
-            : base(health, damage, new Vector(x, y), new Vector(speed, speed), direction)
+            : this(health, damage, new Vector(x, y), speed, direction)
         {
         }
 
