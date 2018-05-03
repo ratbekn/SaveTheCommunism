@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -114,9 +114,6 @@
     <None Include="Resources\player_stand_right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\player_stand_up.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\player_hit_down.png" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +193,33 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_stand_downleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_stand_leftup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_stand_rightdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_stand_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_stand_upright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_downleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_leftup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_rightdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_move_gun_upright.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -66,16 +67,29 @@ namespace SaveTheCommunism.View
                 case Directions.Up:
                     playerImage = HasGun ? Properties.Resources.player_move_gun_up : Properties.Resources.player_stand_up;
                     break;
+                case Directions.RightUp:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_upright : Properties.Resources.player_stand_upright;
+                    break;
                 case Directions.Right:
                     playerImage = HasGun ? Properties.Resources.player_move_gun_right : Properties.Resources.player_stand_right;
+                    break;
+                case Directions.RightDown:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_rightdown : Properties.Resources.player_stand_rightdown;
                     break;
                 case Directions.Down:
                     playerImage = HasGun ? Properties.Resources.player_move_gun_down : Properties.Resources.player_stand_down;
                     break;
+                case Directions.LeftDown:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_downleft : Properties.Resources.player_stand_downleft;
+                    break;
                 case Directions.Left:
                     playerImage = HasGun ? Properties.Resources.player_move_gun_left : Properties.Resources.player_stand_left;
                     break;
+                case Directions.LeftUp:
+                    playerImage = HasGun ? Properties.Resources.player_move_gun_leftup : Properties.Resources.player_stand_leftup;
+                    break;
             }
+
             return playerImage;
         }
 

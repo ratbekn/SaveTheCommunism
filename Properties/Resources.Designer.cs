@@ -263,9 +263,29 @@ namespace SaveTheCommunism.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_move_gun_downleft {
+            get {
+                object obj = ResourceManager.GetObject("player_move_gun_downleft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_move_gun_left {
             get {
                 object obj = ResourceManager.GetObject("player_move_gun_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_move_gun_leftup {
+            get {
+                object obj = ResourceManager.GetObject("player_move_gun_leftup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +303,29 @@ namespace SaveTheCommunism.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_move_gun_rightdown {
+            get {
+                object obj = ResourceManager.GetObject("player_move_gun_rightdown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_move_gun_up {
             get {
                 object obj = ResourceManager.GetObject("player_move_gun_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_move_gun_upright {
+            get {
+                object obj = ResourceManager.GetObject("player_move_gun_upright", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +343,29 @@ namespace SaveTheCommunism.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_stand_downleft {
+            get {
+                object obj = ResourceManager.GetObject("player_stand_downleft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_stand_left {
             get {
                 object obj = ResourceManager.GetObject("player_stand_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_stand_leftup {
+            get {
+                object obj = ResourceManager.GetObject("player_stand_leftup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +383,29 @@ namespace SaveTheCommunism.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap player_stand_rightdown {
+            get {
+                object obj = ResourceManager.GetObject("player_stand_rightdown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap player_stand_up {
             get {
                 object obj = ResourceManager.GetObject("player_stand_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap player_stand_upright {
+            get {
+                object obj = ResourceManager.GetObject("player_stand_upright", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
