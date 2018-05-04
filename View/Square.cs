@@ -185,7 +185,7 @@ namespace SaveTheCommunism.View
                 case Keys.D:
                 case Keys.S:
                 case Keys.A:
-                    //Player.IsMoving = false;
+                    Player.IsMoving = false;
                     break;
             }
         }
