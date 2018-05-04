@@ -8,6 +8,7 @@ namespace SaveTheCommunism.Model
         public Enemy(int health, int damage, Vector position, int speed, Directions initialMoveDirection)
             : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)
         {
+            IsMoving = true;
         }
 
         public Enemy(int health, int damage, int x, int y, int speed, Directions initialMoveDirection)
