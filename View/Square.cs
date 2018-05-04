@@ -1,8 +1,10 @@
 ﻿using SaveTheCommunism.Model;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -24,7 +26,7 @@ namespace SaveTheCommunism.View
 
             timer = new Timer();
             timer.Interval = 20;
-            timer.Tick += new EventHandler(OnTick);
+            timer.Tick += OnTick;
             timer.Start();
         }
 
@@ -40,11 +42,11 @@ namespace SaveTheCommunism.View
             var height = ClientSize.Height;
             var drawFont = new Font("Arial", 16);
 
-            graphics.DrawString("Ammo: " + World.Ammo, drawFont, brush, width / 6, 0, stringFormat);
+            graphics.DrawString("Ammo: " + Player.Ammo, drawFont, brush, width / 6f, 0, stringFormat);
 
-            graphics.DrawString("Score: " + World.Score, drawFont, brush, width / 2, 0, stringFormat);
+            graphics.DrawString("Score: " + World.Score, drawFont, brush, width / 2f, 0, stringFormat);
 
-            graphics.DrawString("Health: " + Player.Health, drawFont, brush, (width / 6) * 5, 0, stringFormat);
+            graphics.DrawString("Health: " + Player.Health, drawFont, brush, (width / 6f) * 5, 0, stringFormat);
         }
 
         private void DrawEnemies(Graphics graphics)
@@ -59,34 +61,35 @@ namespace SaveTheCommunism.View
             graphics.DrawImage(GetPlayerImage(Player.MoveDirection, Player.HasGun), Player.Position.ToPoint());
         }
 
-        private Bitmap GetPlayerImage(Directions moveDirection, bool HasGun)
+        private Bitmap GetPlayerImage(Directions moveDirection, bool hasGun)
         {
             var playerImage = default(Bitmap);
+            //выглядит странно
             switch (moveDirection)
             {
                 case Directions.Up:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_up : Properties.Resources.player_stand_up;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_up : Properties.Resources.player_stand_up;
                     break;
                 case Directions.RightUp:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_upright : Properties.Resources.player_stand_upright;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_upright : Properties.Resources.player_stand_upright;
                     break;
                 case Directions.Right:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_right : Properties.Resources.player_stand_right;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_right : Properties.Resources.player_stand_right;
                     break;
                 case Directions.RightDown:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_rightdown : Properties.Resources.player_stand_rightdown;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_rightdown : Properties.Resources.player_stand_rightdown;
                     break;
                 case Directions.Down:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_down : Properties.Resources.player_stand_down;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_down : Properties.Resources.player_stand_down;
                     break;
                 case Directions.LeftDown:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_downleft : Properties.Resources.player_stand_downleft;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_downleft : Properties.Resources.player_stand_downleft;
                     break;
                 case Directions.Left:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_left : Properties.Resources.player_stand_left;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_left : Properties.Resources.player_stand_left;
                     break;
                 case Directions.LeftUp:
-                    playerImage = HasGun ? Properties.Resources.player_move_gun_leftup : Properties.Resources.player_stand_leftup;
+                    playerImage = hasGun ? Properties.Resources.player_move_gun_leftup : Properties.Resources.player_stand_leftup;
                     break;
             }
 
@@ -124,54 +127,55 @@ namespace SaveTheCommunism.View
             Invalidate();
         }
 
+        private static readonly Dictionary<HashSet<Key>, Directions> DoubleKeys =
+            new Dictionary<HashSet<Key>, Directions>
+            {
+                {new HashSet<Key> {Key.W, Key.A}, Directions.LeftUp},
+                {new HashSet<Key> {Key.W, Key.D}, Directions.RightUp},
+                {new HashSet<Key> {Key.D, Key.S}, Directions.RightDown},
+                {new HashSet<Key> {Key.S, Key.A}, Directions.LeftDown}
+            };
+
+        private static readonly Dictionary<Key, Directions> SingleKeys = new Dictionary<Key, Directions>
+        {
+            {Key.W, Directions.Up},
+            {Key.D, Directions.Right},
+            {Key.S, Directions.Down},
+            {Key.A, Directions.Left}
+        };
+
         protected override void OnKeyDown(System.Windows.Forms.KeyEventArgs e)
         {
             base.OnKeyDown(e);
             Debug.WriteLine(Player.Position.ToString());
 
-            if (Keyboard.IsKeyDown(Key.W))
-            {
-                if (Keyboard.IsKeyDown(Key.A))
-                    Player.MoveDirection = Directions.LeftUp;
-                else if (Keyboard.IsKeyDown(Key.D))
-                    Player.MoveDirection = Directions.RightUp;
-                else
-                    Player.MoveDirection = Directions.Up;
-            }
-
-            if (Keyboard.IsKeyDown(Key.D))
-            {
-                if (Keyboard.IsKeyDown(Key.W))
-                    Player.MoveDirection = Directions.RightUp;
-                else if (Keyboard.IsKeyDown(Key.S))
-                    Player.MoveDirection = Directions.RightDown;
-                else
-                    Player.MoveDirection = Directions.Right;
-            }
-
-            if (Keyboard.IsKeyDown(Key.S))
-            {
-                if (Keyboard.IsKeyDown(Key.A))
-                    Player.MoveDirection = Directions.LeftDown;
-                else if (Keyboard.IsKeyDown(Key.D))
-                    Player.MoveDirection = Directions.RightDown;
-                else
-                    Player.MoveDirection = Directions.Down;
-            }
-
-            if (Keyboard.IsKeyDown(Key.A))
-            {
-                if (Keyboard.IsKeyDown(Key.W))
-                    Player.MoveDirection = Directions.LeftUp;
-                else if (Keyboard.IsKeyDown(Key.S))
-                    Player.MoveDirection = Directions.LeftDown;
-                else
-                    Player.MoveDirection = Directions.Left;
-            }
+            foreach (var key in SingleKeys.Keys)
+                SetMoveDirection(key);
 
             Player.IsMoving = true;
 
             Debug.WriteLine(Player.Position.ToString());
+        }
+
+        //rename
+        private void SetMoveDirection(Key key)
+        {
+            if (!Keyboard.IsKeyDown(key))
+                return;
+
+            var keysPairs = DoubleKeys.Where(pair => pair.Key.Contains(key));
+            Directions? direction = null;
+            foreach (var pair in keysPairs)
+            {
+                foreach (var curKey in pair.Key)
+                {
+                    if (curKey != key && Keyboard.IsKeyDown(curKey))
+                        direction = pair.Value;
+                }
+            }
+
+            direction = direction ?? SingleKeys[key];
+            Player.MoveDirection = direction.Value;
         }
 
         protected override void OnKeyUp(System.Windows.Forms.KeyEventArgs e)

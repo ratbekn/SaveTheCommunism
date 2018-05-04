@@ -22,49 +22,32 @@ namespace SaveTheCommunism.Model
             var deltaY = Math.Abs(playerPosition.Y - Position.Y);
 
             if (Position.X < playerPosition.X && Position.Y < playerPosition.Y)
-            {
-                if (deltaX > deltaY)
-                    MoveDirection = Directions.Right;
-                else if (deltaX - deltaY < 1e-9)
-                    MoveDirection = Directions.RightDown;
-                else
-                    MoveDirection = Directions.Down;
-            }
+                SetMoveDirection(deltaX, deltaY, Directions.Right, Directions.RightDown, Directions.Down);
 
             if (Position.X < playerPosition.X && Position.Y >= playerPosition.Y)
-            {
-                if (deltaX > deltaY)
-                    MoveDirection = Directions.Right;
-                else if (deltaX - deltaY < 1e-9)
-                    MoveDirection = Directions.RightUp;
-                else
-                    MoveDirection = Directions.Up;
-            }
+                SetMoveDirection(deltaX, deltaY, Directions.Right, Directions.RightUp, Directions.Up);
 
             if (Position.X >= playerPosition.X && Position.Y < playerPosition.Y)
-            {
-                if (deltaX > deltaY)
-                    MoveDirection = Directions.Left;
-                else if (deltaX - deltaY < 1e-9)
-                    MoveDirection = Directions.LeftDown;
-                else
-                    MoveDirection = Directions.Down;
-            }
+                SetMoveDirection(deltaX, deltaY, Directions.Left, Directions.LeftDown, Directions.Down);
 
             if (Position.X >= playerPosition.X && Position.Y >= playerPosition.Y)
-            {
-                if (deltaX > deltaY)
-                    MoveDirection = Directions.Left;
-                else if (deltaX - deltaY < 1e-9)
-                    MoveDirection = Directions.LeftUp;
-                else
-                    MoveDirection = Directions.Up;
-            }
+                SetMoveDirection(deltaX, deltaY, Directions.Left, Directions.LeftUp, Directions.Up);
 
             if (deltaX < 1e-9 && deltaY < 1e-9)
                 MoveDirection = Directions.None;
 
             Move();
+        }
+
+        //rename
+        private void SetMoveDirection(double deltaX, double deltaY, Directions dir1, Directions dir2, Directions dir3)
+        {
+            if (deltaX > deltaY)
+                MoveDirection = dir1;
+            else if (deltaX - deltaY < 1e-9)
+                MoveDirection = dir2;
+            else
+                MoveDirection = dir3;
         }
     }
 }

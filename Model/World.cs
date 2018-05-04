@@ -9,6 +9,7 @@ namespace SaveTheCommunism.Model
     internal class World
     {
         public Size WorldSize { get; set; }
+        //configs
         private const int DefaultHealth = 5;
         private const int DefaultDamage = 2;
         private const int DefaultSpeed = 3;
@@ -27,8 +28,9 @@ namespace SaveTheCommunism.Model
         public IEnumerable<Enemy> Enemies => enemies.Values;
         public IEnumerable<Supporter> Supporters => supporters.Values;
 
-        public int Ammo { get; set; }
         public int Score { get; set; }
+
+        static readonly Random Random = new Random();
 
         private static World instance;
 
@@ -43,31 +45,32 @@ namespace SaveTheCommunism.Model
             WorldSize = worldSize;
             Player = new Player(DefaultPlayerHealth, DefaultPlayerDamage, WorldSize.Width / 2,
                 WorldSize.Height / 2, DefaultPlayerSpeed, DefaultPlayerDirection);
+
             supporters = new Dictionary<int, Supporter>();
+
             enemies = new Dictionary<int, Enemy>();
+            var enemiesPositions = new HashSet<Vector>();
             for (var i = 0; i < DefaultNumberOfEnemies; i++)
-                CreateEnemy();
+            {
+                var enemy = CreateEnemy(enemiesPositions);
+                enemies.Add(enemy.GetHashCode(), enemy);
+            }
         }
 
-        public void CreateEnemy()
+        public Enemy CreateEnemy(HashSet<Vector> enemiesPositions)
         {
-            var enemiesPositions = new HashSet<Vector>(enemies.Values.Select(enem => enem.Position));
-            var currentPosition = GetRandomCharacterPosition();
+            var currentPosition = GetRandomCharacterPosition;
             while (enemiesPositions.Contains(currentPosition))
-                currentPosition = GetRandomCharacterPosition();
-            var enemy = new Enemy(DefaultHealth, DefaultDamage, currentPosition, DefaultSpeed, DefaultDirection);
-            enemies.Add(enemy.GetHashCode(), enemy);
+                currentPosition = GetRandomCharacterPosition;
+            enemiesPositions.Add(currentPosition);
+            return new Enemy(DefaultHealth, DefaultDamage, currentPosition, DefaultSpeed, DefaultDirection);
         }
 
-        private Vector GetRandomCharacterPosition()
-        {
-            var random = new Random();
-            return new Vector(random.Next(WorldSize.Width), random.Next(WorldSize.Height));
-        }
+        private Vector GetRandomCharacterPosition => new Vector(Random.Next(WorldSize.Width), Random.Next(WorldSize.Height));
 
         public void CreateSupporter()
         {
-            var supporter = new Supporter(DefaultHealth, DefaultDamage, GetRandomCharacterPosition(), DefaultSpeed, DefaultDirection);
+            var supporter = new Supporter(DefaultHealth, DefaultDamage, GetRandomCharacterPosition, DefaultSpeed, DefaultDirection);
             supporters.Add(supporter.GetHashCode(), supporter);
         }
 

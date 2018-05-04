@@ -6,6 +6,7 @@ namespace SaveTheCommunism.Model
     {
         public int RecruitAbility { get; set; }
         public bool HasGun { get; set; }
+        public int Ammo { get; set; }
 
         public Player(int health, int damage, Vector position, int speed, Directions initialMoveDirection)
             : base(health, damage, position, new Vector(speed, speed), initialMoveDirection)
